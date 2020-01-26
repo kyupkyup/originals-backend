@@ -1,0 +1,123 @@
+// type User{
+//     id: ID! @id
+//     avatar: String
+//         @default(
+//         value: "https://scontent-frt3-2.cdninstagram.com/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=scontent-frt3-2.cdninstagram.com&_nc_ohc=bwxLFUwd9DYAX_hZM1b&oh=892d26eba5c4a2319da3a2104476d461&oe=5E90E8F1"
+//         )
+//     username: String! @unique
+//     birthday: String!
+//     phoneNum: String! @unique
+//     email: String! @unique
+//     introduce: String
+//     password: String!
+//     class: Int!
+//     posts: [Post!]! @relation(name: "PostsOfUser", onDelete:CASCADE)
+//     postsCount: Int!
+//     comments: [Comment!]!  @relation(name: "CommentsOfUser", onDelete:CASCADE)
+//     commentsCount: Int!
+//     reservations: [Reservation!]! @realation(name:"reservationsOfUser", onDelete:CASCADE)
+//     likes: [Like!]! @relation(name: "LikesOfUser", onDelete: CASCADE)
+//     Participants:[Participant!]! @relation(name:"participantsOfUser")
+//     isSelf: Boolean!
+//     createdAt: DateTime! @createdAt
+// }
+
+
+// type Post{
+//     id: ID! @id
+//     files: [File!]! @relation(name: "FilesOfPost", onDelete: CASCADE)
+//     author: User! @relation(name: "PostsOfUser", onDelete: CASCADE)
+//     classifyNum: Int!
+//     main: Boolean!
+//     announcement: Boolean!
+//     title: String!
+//     caption: String!
+//     views: [View!]! @relation(name:"ViewOfPost")
+//     likes: [Like!]! @relation(name: "LikeOfPost", onDelete: CASCADE)
+//     comments: [Comment!]! @relation(name: "CommentOfPost", onDelete: CASCADE)
+//     likeCount: Int!
+//     commentCount: Int!
+//     viewCount: Int!
+//     createdAt: String! @createdAt
+//     updatedAt: String 
+// }
+
+// type Like{
+//     id: ID! @id
+//     user: User! @relation(name: "LikesOfUser")
+//     post: Post! @relation(name: "LikeOfPost")
+//     createdAt: String!
+// }
+
+// type LikeOnComment{
+//     id: ID! @id
+//     user: User! @relation(name: "LikeOnOfUser")
+//     comment: Comment! @relation(name: "LikeOfComment")
+//     createdAt: String! @createdAt
+// }
+
+// type Comment{
+//     id: ID! @id
+//     text: String!
+//     user: User! @relation(name: "CommentsOfUser")
+//     post: Post! @relation(name: "CommentOfPost")
+//     likes: [LikeOnComment!]! @relation(name: "LikeOfComment")
+//     createdAt: String! @createdAt
+// }
+
+// type Meeting{
+//     id: ID! @id
+//     title: String!
+//     main: Boolean!
+//     Organizer: User!
+//     meetingTime: String!
+//     meetingPlace: String!
+//     meetingPrice: String!
+//     deadline: String!
+//     meetingHeadcount: Int!
+//     Participants: [Participant!]! @ralation(name: "ParticipantsOfMeeting")
+//     ParticipantsCount: Int!
+// }
+
+
+// type Participant{
+//     id: ID! @id
+//     user: User! @relation(name:"participantsOfUser")
+//     meeting: Meeting! @realation(name: "ParticipantsOfMeeting")
+//     createdAt: String! @createdAt
+// }
+
+// type Book{ 
+//     id: ID! @id
+//     photo: [File!]!  @relation(name:"bookOfFile")
+//     title: String!
+//     author: String! 
+//     publisher: String!
+//     content: String!
+//     createdAt: String! @createdAt
+//     reservations: [Reservation!]! @relation(name:"reservationOfBook")
+// }
+
+// type Reservation{
+//     id: ID! @id
+//     user: User! @realation(name:"reservationsOfUser", onDelete:CASCADE)
+//     book: Book! @relation(name:"reservationOfBook")
+//     startDate: String!
+//     endDate: String!
+//     createdAt: String! @createdAt 
+// }
+
+// type View{ 
+//     id: ID! @id
+//     users: User!
+//     post: Post! @relation(name:"ViewOfPost")
+//     createdAt:String! @createdAt
+// }
+
+// type File{ 
+//     id: ID! @id
+//     url: String!
+//     posts: [Post] @relation(name: "FilesOfPost")
+//     book: [Book] @relation(name:"bookOfFile")
+//     createdAt: String! @createdAt
+// }

@@ -1,0 +1,116 @@
+type User{
+    id: ID!
+    avatar: String
+    username: String!
+    birthday: String!
+    phoneNum: String!
+    email: String!
+    introduce: String
+    password: String!
+    class: Int!
+    posts: [Post!]!
+    postsCount: Int!
+    comments: [Comment!]!
+    likes: [Like!]!
+    commentsCount: Int!
+    isSelf: Boolean!
+    createdAt: String!
+}
+
+
+type Post{
+    id: ID!
+    files: [File!]!
+    author: User!
+    classifyNum: Int!
+    main: Boolean!
+    announcement: Boolean!
+    title: String!
+    caption: String!
+    views: [View!]!
+    likes: [Like!]!
+    comments: [Comment!]!
+    likeCount: Int!
+    commentCount: Int!
+    createdAt: String!
+    updatedAt: String
+}
+
+type Like{
+    id: ID!
+    user: User!
+    post: Post!
+    createdAt: String!
+}
+
+type LikeOnComment{
+    id: ID!
+    user: User!
+    comment: Comment!
+    createdAt: String!
+}
+
+type Comment{
+    id: ID!
+    text: String!
+    user: User!
+    post: Post!
+    createdAt: String!
+}
+
+type Meeting{
+    id: ID!
+    title: String!
+    main: Boolean!
+    Organizer: User!
+    meetingTime: String!
+    meetingPlace: String!
+    meetingPrice: String!
+    deadline: String!
+    meetingHeadcount: Int!
+    Participants: [Participant!]!
+    ParticipantsCount: Int!
+}
+
+
+type Participant{
+    id: ID!
+    user: User!
+    meeting: Meeting!
+    createdAt: String!
+}
+
+type Book{
+    id: ID!
+    photo: [File!]!
+    title: String!
+    author: String!
+    publisher: String!
+    content: String!
+    createdAt: String!
+    reservations: [Reservation!]!
+}
+
+type Reservation{
+    id: ID!
+    user: User!
+    book: Book!
+    startDate: String!
+    endDate: String!
+    createdAt: String!
+}
+
+type View{
+    id: ID!
+    users: [User!]!
+    post: Post!
+    createdAt:String!
+}
+
+type File{
+    id: ID! 
+    url: String!
+    post: Post
+    book: Book
+    createdAt: String!  
+}

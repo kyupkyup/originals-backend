@@ -57,7 +57,6 @@ type Like{
 type LikeOnComment{
     id: ID! @id
     user: User!
-    isLiked:Boolean!
     comment: Comment! @relation(name: "LikeOfComment")
     createdAt: DateTime! @createdAt
 }
@@ -68,6 +67,7 @@ type Comment{
     user: User! @relation(name: "CommentsOfUser")
     post: Post! @relation(name: "CommentOfPost")
     likes: [LikeOnComment!]! @relation(name: "LikeOfComment")
+    isLiked:Boolean!
     createdAt: DateTime! @createdAt
 }
 

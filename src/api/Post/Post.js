@@ -1,4 +1,4 @@
-import { prisma } from "../../../../originals-demo/generated/prisma-client";
+import { prisma } from "../../../originals-demo/generated/prisma-client";
 
 export default {
     Post:{

@@ -36,12 +36,13 @@ type Post{
     title: String!
     caption: String!
     isLiked:Boolean!
+    isViewed:Boolean!
     views: [View!]! @relation(name:"ViewOfPost")
     likes: [Like!]! @relation(name: "LikeOfPost", onDelete: CASCADE)
     comments: [Comment!]! @relation(name: "CommentOfPost", onDelete: CASCADE)
-    likeCount: Int!
-    commentCount: Int!
-    viewCount: Int!
+    likesCount: Int!
+    commentsCount: Int!
+    viewsCount: Int!
     createdAt: DateTime! @createdAt
     updatedAt: DateTime @updatedAt
 }

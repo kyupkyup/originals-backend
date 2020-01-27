@@ -1,0 +1,10 @@
+type Mutation {
+  upload(
+    author: String!
+    caption: String!
+    classifyNum: Int!
+    main: Boolean!
+    announcement: Boolean!
+    title: String!
+  ): Post!
+}

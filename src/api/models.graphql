@@ -35,10 +35,13 @@ type Post{
     views: [View!]!
     likes: [Like!]!
     isLiked: Boolean!
+    isViewd:Boolean!
     comments: [Comment!]!
-    likeCount: Int!
+    likesCount: Int!
     commentCount: Int!
+    viewsCount:Int!
     createdAt: String!
+    updatedAt: String!
 }
 
 type Like{

@@ -67,6 +67,7 @@ type Comment{
     user: User! @relation(name: "CommentsOfUser")
     post: Post! @relation(name: "CommentOfPost")
     likes: [LikeOnComment!]! @relation(name: "LikeOfComment")
+    likesCount:Int!
     isLiked:Boolean!
     createdAt: DateTime! @createdAt
 }

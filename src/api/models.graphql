@@ -64,6 +64,7 @@ type Comment{
     user: User!
     isLiked: Boolean!
     likes: [Like!]!
+    likesCount:Int!
     post: Post!
     createdAt: String!
 }

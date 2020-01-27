@@ -4,21 +4,24 @@ type User{
         @default(
         value: "https://scontent-frt3-2.cdninstagram.com/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=scontent-frt3-2.cdninstagram.com&_nc_ohc=bwxLFUwd9DYAX_hZM1b&oh=892d26eba5c4a2319da3a2104476d461&oe=5E90E8F1"
         )
-    username: String! @unique
+    userName: String! @unique
     birthday: String!
     phoneNum: String! @unique
     email: String! @unique
     introduce: String
     password: String!
-    class: Int!
+    classes: Int!
     posts: [Post!]! @relation(name: "PostsOfUser", onDelete:CASCADE)
-    postsCount: Int!
+    postsCount: Int
     comments: [Comment!]!  @relation(name: "CommentsOfUser", onDelete:CASCADE)
-    commentsCount: Int!
+    commentsCount: Int
     reservations: [Reservation!]! @realation(name:"ReservationsOfUser", onDelete:CASCADE)
+    reservationsCount: Int
     likes: [Like!]! @relation(name: "LikesOfUser", onDelete: CASCADE)
+    likesCount:Int
     participants:[Participant!]! @relation(name:"ParticipantsOfUser")
-    isSelf: Boolean!
+    participantsCount: Int
+    isSelf: Boolean
     createdAt: DateTime! @createdAt
 }
 
@@ -32,6 +35,7 @@ type Post{
     announcement: Boolean!
     title: String!
     caption: String!
+    isLiked:Boolean!
     views: [View!]! @relation(name:"ViewOfPost")
     likes: [Like!]! @relation(name: "LikeOfPost", onDelete: CASCADE)
     comments: [Comment!]! @relation(name: "CommentOfPost", onDelete: CASCADE)
@@ -52,6 +56,7 @@ type Like{
 type LikeOnComment{
     id: ID! @id
     user: User!
+    isLiked:Boolean!
     comment: Comment! @relation(name: "LikeOfComment")
     createdAt: DateTime! @createdAt
 }
@@ -76,6 +81,7 @@ type Meeting{
     deadline: String!
     meetingHeadcount: Int!
     participants: [Participant!]! @ralation(name: "ParticipantsOfMeeting")
+    isParticipated:Boolean!
     participantsCount: Int!
 }
 
@@ -96,6 +102,7 @@ type Book{
     content: String!
     createdAt: DateTime! @createdAt
     reservations: [Reservation!]! @relation(name:"ReservationOfBook")
+    isReserved:Boolean!
 }
 
 type Reservation{

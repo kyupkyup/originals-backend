@@ -1,19 +1,24 @@
 type User{
     id: ID!
     avatar: String
-    username: String!
+    userName: String!
     birthday: String!
     phoneNum: String!
     email: String!
     introduce: String
     password: String!
-    class: Int!
+    classes: Int!
     posts: [Post!]!
-    postsCount: Int!
+    postsCount: Int
     comments: [Comment!]!
     likes: [Like!]!
-    commentsCount: Int!
-    isSelf: Boolean!
+    likesCount:Int
+    commentsCount: Int
+    reservations:[Reservation!]!
+    reservationsCount: Int
+    participants:[Participant!]!
+    participantsCount: Int
+    isSelf: Boolean
     createdAt: String!
 }
 
@@ -29,11 +34,11 @@ type Post{
     caption: String!
     views: [View!]!
     likes: [Like!]!
+    isLiked: Boolean!
     comments: [Comment!]!
     likeCount: Int!
     commentCount: Int!
     createdAt: String!
-    updatedAt: String
 }
 
 type Like{
@@ -54,6 +59,7 @@ type Comment{
     id: ID!
     text: String!
     user: User!
+    isLiked: Boolean!
     post: Post!
     createdAt: String!
 }
@@ -69,6 +75,7 @@ type Meeting{
     deadline: String!
     meetingHeadcount: Int!
     Participants: [Participant!]!
+    isParticipated:Boolean!
     ParticipantsCount: Int!
 }
 
@@ -89,6 +96,7 @@ type Book{
     content: String!
     createdAt: String!
     reservations: [Reservation!]!
+    isReserved: Boolean!
 }
 
 type Reservation{

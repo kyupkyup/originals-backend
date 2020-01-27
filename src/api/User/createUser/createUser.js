@@ -1,0 +1,35 @@
+import { prisma } from "../../../../originals-demo/generated/prisma-client";
+export default {
+  Mutation: {
+    createUser: async (_, args ) => {
+      const {
+          avatar,
+        userName,
+        birthday,
+        phoneNum,
+        email,
+        password,
+        classes=1
+      } = args;
+      const exists = await prisma.$exists.user({email});
+      if(exists){
+          throw error("이메일이 이미 사용중입니다.");
+      }
+       try{
+            await prisma.createUser({
+            avatar,
+            userName,
+            birthday,
+            phoneNum,
+            email,
+            password,
+            classes
+           });
+           return true;
+       }
+       catch(e){
+           return false;
+       }
+    }
+  }
+};

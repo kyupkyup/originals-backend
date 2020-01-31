@@ -4,12 +4,12 @@ type User{
         @default(
         value: "https://scontent-frt3-2.cdninstagram.com/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=scontent-frt3-2.cdninstagram.com&_nc_ohc=bwxLFUwd9DYAX_hZM1b&oh=892d26eba5c4a2319da3a2104476d461&oe=5E90E8F1"
         )
-    userName: String! @unique
-    birthday: String!
-    phoneNum: String! @unique
+    userName: String
+    birthday: String
+    phoneNum: String @unique
     email: String! @unique
     introduce: String
-    password: String!
+    password: String
     classes: Int!
     posts: [Post!]! @relation(name: "PostsOfUser", onDelete:CASCADE)
     postsCount: Int
@@ -120,7 +120,7 @@ type View{
     id: ID! @id
     users: User!
     post: Post! @relation(name:"ViewOfPost")
-    createdAt:DateTime! @createdAt
+    createdAt: DateTime! @createdAt
 }
 
 type File{ 

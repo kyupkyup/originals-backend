@@ -1,9 +1,9 @@
-import { prisma } from "../../../generated/prisma-client";
+import { prisma } from "../../../originals-demo/generated/prisma-client";
 
 
 export default {
     LikeOnComment: {
-      comment: ({ id }) => prisma.like({ id }).comment(),
-      user: ({ id }) => prisma.like({ id }).user()
+      comment: ({ id }) => prisma.LikeOnComment({ id }).comment(),
+      user: ({ id }) => prisma.LikeOnComment({ id }).user()
     }
   };

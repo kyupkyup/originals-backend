@@ -11,6 +11,6 @@ type Mutation {
     announcement: Boolean!
     title: String!
     caption: String
-    action: ACTIONS
+    action: ACTIONS!
   ): Post!
 }

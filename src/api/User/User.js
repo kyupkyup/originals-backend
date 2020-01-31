@@ -10,7 +10,7 @@ export default {
         introduce: ({id}) => prisma.user({id}).introduce(),
         password: ({id}) => prisma.user({id}).password(),
         classes: ({id}) => prisma.user({id}).classes(),
-        postCount: ({id}) => prisma.postsConnection({
+        postsCount: ({id}) => prisma.postsConnection({
             where:{
                 author_some: { id }
             }

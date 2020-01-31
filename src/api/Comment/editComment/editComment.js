@@ -3,7 +3,7 @@ import { isAuthenticated } from "../../../middleware";
 
 export default {
   Mutation: {
-    editPost: async (_, args, request) => {
+    editComment: async (_, args, request) => {
       isAuthenticated(request);
       const {
         id,

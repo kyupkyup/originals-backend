@@ -1,12 +1,12 @@
 type User{
     id: ID!
     avatar: String
-    userName: String!
-    birthday: String!
-    phoneNum: String!
+    userName: String
+    birthday: String
+    phoneNum: String
     email: String!
     introduce: String
-    password: String!
+    password: String
     classes: Int!
     posts: [Post!]!
     postsCount: Int
@@ -35,10 +35,10 @@ type Post{
     views: [View!]!
     likes: [Like!]!
     isLiked: Boolean!
-    isViewd:Boolean!
+    isViewed:Boolean!
     comments: [Comment!]!
     likesCount: Int!
-    commentCount: Int!
+    commentsCount: Int!
     viewsCount:Int!
     createdAt: String!
     updatedAt: String!
@@ -63,7 +63,7 @@ type Comment{
     text: String!
     user: User!
     isLiked: Boolean!
-    likes: [Like!]!
+    likes: [LikeOnComment!]!
     likesCount:Int!
     post: Post!
     createdAt: String!

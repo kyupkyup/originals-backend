@@ -1,9 +1,9 @@
 type Mutation{
     editUser(
-        avatar:String,
-        userName:String,
-        birthday:String,
-        phoneNum:String,
+        avatar:String
+        userName:String
+        birthday:String
+        phoneNum:String
         password:String
-    ):Boolean!
+    ):User!
 }

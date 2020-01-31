@@ -1,9 +1,9 @@
 import { isAuthenticated } from "../../../middleware";
-import { prisma } from "../../../../generated/prisma-client";
+import { prisma } from "../../../../originals-demo/generated/prisma-client";
 
 export default {
     Mutation:{
-        toggleLike: async(_, args, {request}) =>{
+        toggleLikeOnComment: async(_, args, {request}) =>{
             if(request.user){
                 isAuthenticated(request);
                 const {commentId} = args;
@@ -23,14 +23,14 @@ export default {
                     ]
                 };
                 try{
-                    const existingLike = await prisma.$exists.like(
+                    const existingLike = await prisma.$exists.likeOnComment(
                             filterOptions  
                     );
                     if(existingLike){
-                        await prisma.deleteManyLikes(filterOptions);
+                        await prisma.deleteManyLikeOnComments(filterOptions);
                     }
                     else{
-                        await prisma.createLike({
+                        await prisma.createLikeOnComment({
                             user: {
                                 connect: {
                                     id: user.id

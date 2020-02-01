@@ -1,5 +1,5 @@
 import { generateToken } from "../../../utils";
-import { prisma } from "../../../../generated/prisma-client";
+import { prisma } from "../../../../originals-demo/generated/prisma-client";
 
 export default {
   Query: {
@@ -8,12 +8,12 @@ export default {
       const user = await prisma.user({ email });
       const exists = await prisma.$exists.user({ email });
       if (!exists) {
-        throw error("등록된 이메일이 아닙니다.");
+        return "등록된 이메일이 아닙니다.";
       }
       if (user.password === password) {
         return generateToken(user.id);
       } else {
-        throw Error("비밀번호가 틀렸습니다.");
+        return "비밀번호가 틀렸습니다.";
       }
     }
   }

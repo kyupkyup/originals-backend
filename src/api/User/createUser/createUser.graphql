@@ -1,11 +1,12 @@
-type Mutation{
-    createUser(
-        avatar:String
-        userName:String
-        birthday:String
-        phoneNum:String
-        email:String
-        password:String
-        classes:Int
-    ):Boolean!
+type Mutation {
+  createUser(
+    avatar: String
+    userName: String!
+    birthday: String!
+    phoneNum: String!
+    email: String!
+    password: String!
+    introduce: String
+    classes: Int
+  ): Boolean!
 }

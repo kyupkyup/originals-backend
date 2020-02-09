@@ -12,16 +12,10 @@ type User{
     password: String
     classes: Int!
     posts: [Post!]! @relation(name: "PostsOfUser", onDelete:CASCADE)
-    postsCount: Int
     comments: [Comment!]!  @relation(name: "CommentsOfUser", onDelete:CASCADE)
-    commentsCount: Int
     reservations: [Reservation!]! @realation(name:"ReservationsOfUser", onDelete:CASCADE)
-    reservationsCount: Int
     likes: [Like!]! @relation(name: "LikesOfUser", onDelete: CASCADE)
-    likesCount:Int
     participants:[Participant!]! @relation(name:"ParticipantsOfUser")
-    participantsCount: Int
-    isSelf: Boolean
     createdAt: DateTime! @createdAt
 }
 
@@ -35,16 +29,18 @@ type Post{
     announcement: Boolean!
     title: String!
     caption: String!
-    isLiked:Boolean!
-    isViewed:Boolean!
     views: [View!]! @relation(name:"ViewOfPost")
     likes: [Like!]! @relation(name: "LikeOfPost", onDelete: CASCADE)
     comments: [Comment!]! @relation(name: "CommentOfPost", onDelete: CASCADE)
-    likesCount: Int!
-    commentsCount: Int!
-    viewsCount: Int!
+    bulletinList: BulletinList! @relation(name:"PostOfBulletinList")
     createdAt: DateTime! @createdAt
     updatedAt: DateTime @updatedAt
+}
+
+type BulletinList{
+    id: ID! @id
+    classifyNum: Int!
+    posts:[Post!]! @relation(name:"PostOfBulletinList")
 }
 
 type Like{
@@ -67,8 +63,6 @@ type Comment{
     user: User! @relation(name: "CommentsOfUser")
     post: Post! @relation(name: "CommentOfPost")
     likes: [LikeOnComment!]! @relation(name: "LikeOfComment")
-    likesCount:Int!
-    isLiked:Boolean!
     createdAt: DateTime! @createdAt
 }
 
@@ -81,10 +75,8 @@ type Meeting{
     meetingPlace: String!
     meetingPrice: String!
     deadline: String!
-    meetingHeadcount: Int!
+    meetingHeadCounts: Int!
     participants: [Participant!]! @ralation(name: "ParticipantsOfMeeting")
-    isParticipated:Boolean!
-    participantsCount: Int!
 }
 
 
@@ -104,7 +96,6 @@ type Book{
     content: String!
     createdAt: DateTime! @createdAt
     reservations: [Reservation!]! @relation(name:"ReservationOfBook")
-    isReserved:Boolean!
 }
 
 type Reservation{

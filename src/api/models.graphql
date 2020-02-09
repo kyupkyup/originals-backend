@@ -1,129 +1,134 @@
-type User{
-    id: ID!
-    avatar: String
-    userName: String
-    birthday: String
-    phoneNum: String
-    email: String!
-    introduce: String
-    password: String
-    classes: Int!
-    posts: [Post!]!
-    postsCount: Int
-    comments: [Comment!]!
-    likes: [Like!]!
-    likesCount:Int
-    commentsCount: Int
-    reservations:[Reservation!]!
-    reservationsCount: Int
-    participants:[Participant!]!
-    participantsCount: Int
-    isSelf: Boolean
-    createdAt: String!
+type User {
+  id: ID!
+  avatar: String
+  userName: String
+  birthday: String
+  phoneNum: String
+  email: String!
+  introduce: String
+  password: String
+  classes: Int!
+  posts: [Post!]!
+  postsCount: Int
+  comments: [Comment!]!
+  likes: [Like!]!
+  likesCount: Int!
+  commentsCount: Int!
+  reservations: [Reservation!]!
+  reservationsCount: Int!
+  participants: [Participant!]!
+  participantsCount: Int!
+  isSelf: Boolean!
+  createdAt: String!
 }
 
-
-type Post{
-    id: ID!
-    files: [File!]!
-    author: User!
-    classifyNum: Int!
-    main: Boolean!
-    announcement: Boolean!
-    title: String!
-    caption: String!
-    views: [View!]!
-    likes: [Like!]!
-    isLiked: Boolean!
-    isViewed:Boolean!
-    comments: [Comment!]!
-    likesCount: Int!
-    commentsCount: Int!
-    viewsCount:Int!
-    createdAt: String!
-    updatedAt: String!
+type Post {
+  id: ID!
+  files: [File!]!
+  author: User!
+  classifyNum: Int!
+  main: Boolean!
+  announcement: Boolean!
+  title: String!
+  caption: String!
+  views: [View!]!
+  likes: [Like!]!
+  isLiked: Boolean!
+  isViewed: Boolean!
+  comments: [Comment!]!
+  likesCount: Int!
+  commentsCount: Int!
+  viewsCount: Int!
+  bulletinList: BulletinList!
+  createdAt: String!
+  updatedAt: String!
 }
 
-type Like{
-    id: ID!
-    user: User!
-    post: Post!
-    createdAt: String!
+type BulletinList {
+  id: ID!
+  classifyNum: Int!
+  posts: [Post!]!
 }
 
-type LikeOnComment{
-    id: ID!
-    user: User!
-    comment: Comment!
-    createdAt: String!
+type Like {
+  id: ID!
+  user: User!
+  post: Post!
+  createdAt: String!
 }
 
-type Comment{
-    id: ID!
-    text: String!
-    user: User!
-    isLiked: Boolean!
-    likes: [LikeOnComment!]!
-    likesCount:Int!
-    post: Post!
-    createdAt: String!
+type LikeOnComment {
+  id: ID!
+  user: User!
+  comment: Comment!
+  createdAt: String!
 }
 
-type Meeting{
-    id: ID!
-    title: String!
-    main: Boolean!
-    Organizer: User!
-    meetingTime: String!
-    meetingPlace: String!
-    meetingPrice: String!
-    deadline: String!
-    meetingHeadcount: Int!
-    Participants: [Participant!]!
-    isParticipated:Boolean!
-    ParticipantsCount: Int!
+type Comment {
+  id: ID!
+  text: String!
+  user: User!
+  isLiked: Boolean!
+  likes: [LikeOnComment!]!
+  likesCount: Int!
+  post: Post!
+  createdAt: String!
 }
 
-
-type Participant{
-    id: ID!
-    user: User!
-    meeting: Meeting!
-    createdAt: String!
+type Meeting {
+  id: ID!
+  title: String!
+  main: Boolean!
+  Organizer: User!
+  meetingTime: String!
+  meetingPlace: String!
+  meetingPrice: String!
+  deadline: String!
+  meetingHeadCounts: Int!
+  participants: [Participant!]!
+  isParticipated: Boolean!
+  participantsCount: Int!
 }
 
-type Book{
-    id: ID!
-    photo: [File!]!
-    title: String!
-    author: String!
-    publisher: String!
-    content: String!
-    createdAt: String!
-    reservations: [Reservation!]!
-    isReserved: Boolean!
+type Participant {
+  id: ID!
+  user: User!
+  meeting: Meeting!
+  createdAt: String!
 }
 
-type Reservation{
-    id: ID!
-    user: User!
-    book: Book!
-    startDate: String!
-    endDate: String!
-    createdAt: String!
+type Book {
+  id: ID!
+  photo: [File!]!
+  title: String!
+  author: String!
+  publisher: String!
+  content: String!
+  createdAt: String!
+  reservations: [Reservation!]!
+  isReserved: Boolean!
 }
 
-type View{
-    id: ID!
-    users: [User!]!
-    post: Post!
-    createdAt:String!
+type Reservation {
+  id: ID!
+  user: User!
+  book: Book!
+  startDate: String!
+  endDate: String!
+  createdAt: String!
 }
 
-type File{
-    id: ID! 
-    url: String!
-    post: Post
-    book: Book
-    createdAt: String!  
+type View {
+  id: ID!
+  users: [User!]!
+  post: Post!
+  createdAt: String!
+}
+
+type File {
+  id: ID!
+  url: String!
+  post: Post
+  book: Book
+  createdAt: String!
 }

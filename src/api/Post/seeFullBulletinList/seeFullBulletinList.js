@@ -3,13 +3,9 @@ import { isAuthenticated } from "../../../middleware";
 
 export default {
   Query: {
-    seeProfile: async (_, args, { request }) => {
+    seeFullBulletinList: async (_, __, { request }) => {
       isAuthenticated(request);
-      const { email } = args;
-
-      const user = await prisma.user({ email });
-
-      return user;
+      return await prisma.bulletinLists();
     }
   }
 };

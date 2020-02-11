@@ -70,13 +70,14 @@ type Meeting{
     id: ID! @id
     title: String!
     main: Boolean!
-    Organizer: User!
+    user: User! @relation(name:"MeetingsOfUser")
     meetingTime: String!
     meetingPlace: String!
     meetingPrice: String!
     deadline: String!
     meetingHeadCounts: Int!
     participants: [Participant!]! @ralation(name: "ParticipantsOfMeeting")
+    createdAt: DateTime! @createdAt
 }
 
 

@@ -10,6 +10,7 @@ export default {
     introduce: ({ id }) => prisma.user({ id }).introduce(),
     password: ({ id }) => prisma.user({ id }).password(),
     classes: ({ id }) => prisma.user({ id }).classes(),
+    meetings: ({ id }) => prisma.user({ id }).meetings(),
     posts: ({ id }) => prisma.user({ id }).posts(),
     comments: ({ id }) => prisma.user({ id }).comments(),
     likes: ({ id }) => prisma.user({ id }).likes(),

@@ -8,6 +8,7 @@ type User {
   introduce: String
   password: String
   classes: Int!
+  meetings: [Meeting!]!
   posts: [Post!]!
   postsCount: Int
   comments: [Comment!]!
@@ -25,7 +26,7 @@ type User {
 type Post {
   id: ID!
   files: [File!]!
-  author: User!
+  author: User
   classifyNum: Int!
   main: Boolean!
   announcement: Boolean!
@@ -52,14 +53,14 @@ type BulletinList {
 
 type Like {
   id: ID!
-  user: User!
+  user: User
   post: Post!
   createdAt: String!
 }
 
 type LikeOnComment {
   id: ID!
-  user: User!
+  user: User
   comment: Comment!
   createdAt: String!
 }
@@ -67,7 +68,7 @@ type LikeOnComment {
 type Comment {
   id: ID!
   text: String!
-  user: User!
+  user: User
   isLiked: Boolean!
   likes: [LikeOnComment!]!
   likesCount: Int!
@@ -79,7 +80,7 @@ type Meeting {
   id: ID!
   title: String!
   main: Boolean!
-  user: User!
+  user: User
   meetingTime: String!
   meetingPlace: String!
   meetingPrice: String!
@@ -93,7 +94,7 @@ type Meeting {
 
 type Participant {
   id: ID!
-  user: User!
+  user: User
   meeting: Meeting!
   createdAt: String!
 }
@@ -112,7 +113,7 @@ type Book {
 
 type Reservation {
   id: ID!
-  user: User!
+  user: User
   book: Book!
   startDate: String!
   endDate: String!
@@ -121,7 +122,7 @@ type Reservation {
 
 type View {
   id: ID!
-  users: [User!]!
+  users: [User]
   post: Post!
   createdAt: String!
 }

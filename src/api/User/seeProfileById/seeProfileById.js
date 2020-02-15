@@ -3,11 +3,13 @@ import { isAuthenticated } from "../../../middleware";
 
 export default {
   Query: {
-    seeParticipantsList: async (_, args, { request }) => {
+    seeProfileById: async (_, args, { request }) => {
       isAuthenticated(request);
       const { id } = args;
 
-      return await prisma.participants({ id });
+      const user = await prisma.user({ id });
+
+      return user;
     }
   }
 };

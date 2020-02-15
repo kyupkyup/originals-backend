@@ -1,9 +1,17 @@
-type Mutation{
-    editUser(
-        avatar:String
-        userName:String
-        birthday:String
-        phoneNum:String
-        password:String
-    ):User!
+enum ACTIONS {
+  EDIT
+  DELETE
+}
+
+type Mutation {
+  editUser(
+    id: String!
+    avatar: String
+    userName: String
+    birthday: String
+    phoneNum: String
+    password: String
+    introduce: String
+    action: ACTIONS
+  ): User!
 }

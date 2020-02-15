@@ -11,25 +11,26 @@ type User{
     introduce: String
     password: String
     classes: Int!
-    posts: [Post!]! @relation(name: "PostsOfUser", onDelete:CASCADE)
-    comments: [Comment!]!  @relation(name: "CommentsOfUser", onDelete:CASCADE)
-    reservations: [Reservation!]! @realation(name:"ReservationsOfUser", onDelete:CASCADE)
-    likes: [Like!]! @relation(name: "LikesOfUser", onDelete: CASCADE)
-    participants:[Participant!]! @relation(name:"ParticipantsOfUser")
+    meetings: [Meeting!] @relation(name:"MeetingsOfUser" onDelete:CASCADE)
+    posts: [Post!] @relation(name: "PostsOfUser" onDelete:CASCADE)
+    comments: [Comment!]  @relation(name: "CommentsOfUser" onDelete:CASCADE)
+    reservations: [Reservation!] @realation(name:"ReservationsOfUser" onDelete:CASCADE)
+    likes: [Like!] @relation(name: "LikesOfUser" onDelete:CASCADE)
+    participants:[Participant!] @relation(name:"ParticipantsOfUser" onDelete:CASCADE)
     createdAt: DateTime! @createdAt
 }
 
 
 type Post{
     id: ID! @id
-    files: [File!]! @relation(name: "FilesOfPost", onDelete: CASCADE)
-    author: User! @relation(name: "PostsOfUser", onDelete: CASCADE)
+    files: [File!]! @relation(name: "FileOfPost", onDelete: CASCADE)
+    author: User @relation(name: "PostsOfUser")
     classifyNum: Int!
     main: Boolean!
     announcement: Boolean!
     title: String!
     caption: String!
-    views: [View!]! @relation(name:"ViewOfPost")
+    views: [View!]! @relation(name:"ViewOfPost", onDelete:CASCADE)
     likes: [Like!]! @relation(name: "LikeOfPost", onDelete: CASCADE)
     comments: [Comment!]! @relation(name: "CommentOfPost", onDelete: CASCADE)
     bulletinList: BulletinList! @relation(name:"PostOfBulletinList")
@@ -45,14 +46,14 @@ type BulletinList{
 
 type Like{
     id: ID! @id
-    user: User! @relation(name: "LikesOfUser")
+    user: User @relation(name: "LikesOfUser")
     post: Post! @relation(name: "LikeOfPost")
     createdAt: DateTime!  @createdAt
 }
 
 type LikeOnComment{
     id: ID! @id
-    user: User!
+    user: User
     comment: Comment! @relation(name: "LikeOfComment")
     createdAt: DateTime! @createdAt
 }
@@ -60,9 +61,9 @@ type LikeOnComment{
 type Comment{
     id: ID! @id
     text: String!
-    user: User! @relation(name: "CommentsOfUser")
+    user: User @relation(name: "CommentsOfUser")
     post: Post! @relation(name: "CommentOfPost")
-    likes: [LikeOnComment!]! @relation(name: "LikeOfComment")
+    likes: [LikeOnComment!]! @relation(name: "LikeOfComment" onDelete:CASCADE)
     createdAt: DateTime! @createdAt
 }
 
@@ -70,38 +71,38 @@ type Meeting{
     id: ID! @id
     title: String!
     main: Boolean!
-    user: User! @relation(name:"MeetingsOfUser")
+    user: User @relation(name:"MeetingsOfUser")
     meetingTime: String!
     meetingPlace: String!
     meetingPrice: String!
     deadline: String!
     meetingHeadCounts: Int!
-    participants: [Participant!]! @ralation(name: "ParticipantsOfMeeting")
+    participants: [Participant!]! @ralation(name: "ParticipantsOfMeeting" onDelete:CASCADE)
     createdAt: DateTime! @createdAt
 }
 
 
 type Participant{
     id: ID! @id
-    user: User! @relation(name:"ParticipantsOfUser")
+    user: User @relation(name:"ParticipantsOfUser")
     meeting: Meeting! @realation(name: "ParticipantsOfMeeting")
     createdAt: DateTime! @createdAt
 }
 
 type Book{ 
     id: ID! @id
-    photo: [File!]!  @relation(name:"BookOfFile")
+    photo: [File!]!  @relation(name:"FileOfBook" onDelete:CASCADE)
     title: String!
     author: String! 
     publisher: String!
     content: String!
     createdAt: DateTime! @createdAt
-    reservations: [Reservation!]! @relation(name:"ReservationOfBook")
+    reservations: [Reservation!]! @relation(name:"ReservationOfBook" onDelete:CASCADE)
 }
 
 type Reservation{
     id: ID! @id
-    user: User! @realation(name:"ReservationsOfUser", onDelete:CASCADE)
+    user: User @realation(name:"ReservationsOfUser", onDelete:CASCADE)
     book: Book! @relation(name:"ReservationOfBook")
     startDate: String!
     endDate: String!
@@ -110,7 +111,7 @@ type Reservation{
 
 type View{ 
     id: ID! @id
-    users: User!
+    users: User
     post: Post! @relation(name:"ViewOfPost")
     createdAt: DateTime! @createdAt
 }
@@ -118,7 +119,7 @@ type View{
 type File{ 
     id: ID! @id
     url: String!
-    posts: [Post] @relation(name: "FilesOfPost")
-    book: [Book] @relation(name:"BookOfFile")
+    post: [Post] @relation(name: "FileOfPost")
+    book: [Book] @relation(name:"FileOfBook")
     createdAt: DateTime! @createdAt
 }

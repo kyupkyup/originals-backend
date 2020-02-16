@@ -3,7 +3,7 @@ import { isAuthenticated } from "../../../middleware";
 
 export default {
   Mutation: {
-    editPost: async (_, args, request) => {
+    editPost: async (_, args, { request }) => {
       isAuthenticated(request);
       const {
         id,
@@ -14,8 +14,9 @@ export default {
         caption,
         action
       } = args;
+      console.log(args);
       const { user } = request;
-      const post = await prisma.$exists.post({id, user: { id: user.id }});
+      const post = await prisma.$exists.post({ id, author: { id: user.id } });
 
       if (post) {
         if (action === "EDIT") {
@@ -29,9 +30,8 @@ export default {
           return prisma.deletePost({
             id
           });
-        }
-        else{
-            throw Error("해당 작업을 수행할 수 없습니다.")
+        } else {
+          throw Error("해당 작업을 수행할 수 없습니다.");
         }
       }
     }

@@ -7,6 +7,11 @@ export default {
       isAuthenticated(request);
       const { user } = request;
       const { files, classifyNum, main, announcement, title, caption } = args;
+      if (main === true) {
+        await prisma.updateManyPosts({
+          data: { main: false }
+        });
+      }
       const post = await prisma.createPost({
         author: { connect: { id: user.id } },
         caption,

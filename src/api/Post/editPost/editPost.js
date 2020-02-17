@@ -20,6 +20,11 @@ export default {
 
       if (post) {
         if (action === "EDIT") {
+          if (main === true) {
+            await prisma.updateManyPosts({
+              data: { main: false }
+            });
+          }
           return prisma.updatePost({
             data: { classifyNum, main, announcement, title, caption },
             where: {

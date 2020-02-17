@@ -87,8 +87,8 @@ type Meeting {
   deadline: String!
   meetingHeadCounts: Int!
   participants: [Participant!]!
-  isParticipated: Boolean!
-  participantsCount: Int!
+  isParticipated: Boolean
+  participantsCount: Int
   createdAt: String!
 }
 

@@ -3,12 +3,15 @@ import { isAuthenticated } from "../../../middleware";
 
 export default {
   Query: {
-    seeMeeting: async (_, args, { request }) => {
+    mainMeeting: async (_, __, { request }) => {
       isAuthenticated(request);
-      const { id } = args;
-      const meeting = await prisma.meeting({ id });
-      console.log(meeting);
-      return meeting;
+
+      const meeting = await prisma.meetings({
+        where: {
+          main: true
+        }
+      });
+      return meeting[0];
     }
   }
 };

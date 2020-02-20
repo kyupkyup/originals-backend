@@ -1,5 +1,5 @@
-#endpoint: https://us1.prisma.sh/originals/orginals/dev
-endpoint: https://eu1.prisma.sh/originals/originals/dev
+#endpoint: https://us1.prisma.sh/originals/originals/dev
+endpoint: ${env:PRISMA_ENDPOINT}
 datamodel: datamodel.prisma
 
 generate:

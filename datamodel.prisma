@@ -1,0 +1,125 @@
+type User{
+    id: ID! @id
+    avatar: String
+        @default(
+        value: "https://scontent-frt3-2.cdninstagram.com/v/t51.2885-19/44884218_345707102882519_2446069589734326272_n.jpg?_nc_ht=scontent-frt3-2.cdninstagram.com&_nc_ohc=bwxLFUwd9DYAX_hZM1b&oh=892d26eba5c4a2319da3a2104476d461&oe=5E90E8F1"
+        )
+    userName: String
+    birthday: String
+    phoneNum: String @unique
+    email: String! @unique
+    introduce: String
+    password: String
+    classes: Int!
+    meetings: [Meeting!] @relation(name:"MeetingsOfUser" onDelete:CASCADE)
+    posts: [Post!] @relation(name: "PostsOfUser" onDelete:CASCADE)
+    comments: [Comment!]  @relation(name: "CommentsOfUser" onDelete:CASCADE)
+    reservations: [Reservation!] @realation(name:"ReservationsOfUser" onDelete:CASCADE)
+    likes: [Like!] @relation(name: "LikesOfUser" onDelete:CASCADE)
+    participants:[Participant!] @relation(name:"ParticipantsOfUser" onDelete:CASCADE)
+    createdAt: DateTime! @createdAt
+}
+
+
+type Post{
+    id: ID! @id
+    files: [File!]! @relation(name: "FileOfPost", onDelete: CASCADE)
+    author: User @relation(name: "PostsOfUser")
+    classifyNum: Int!
+    main: Boolean!
+    announcement: Boolean!
+    title: String!
+    caption: String!
+    views: [View!]! @relation(name:"ViewOfPost", onDelete:CASCADE)
+    likes: [Like!]! @relation(name: "LikeOfPost", onDelete: CASCADE)
+    comments: [Comment!]! @relation(name: "CommentOfPost", onDelete: CASCADE)
+    bulletinList: BulletinList! @relation(name:"PostOfBulletinList")
+    createdAt: DateTime! @createdAt
+    updatedAt: DateTime @updatedAt
+}
+
+type BulletinList{
+    id: ID! @id
+    classifyNum: Int!
+    posts:[Post!]! @relation(name:"PostOfBulletinList")
+}
+
+type Like{
+    id: ID! @id
+    user: User @relation(name: "LikesOfUser")
+    post: Post! @relation(name: "LikeOfPost")
+    createdAt: DateTime!  @createdAt
+}
+
+type LikeOnComment{
+    id: ID! @id
+    user: User
+    comment: Comment! @relation(name: "LikeOfComment")
+    createdAt: DateTime! @createdAt
+}
+
+type Comment{
+    id: ID! @id
+    text: String!
+    user: User @relation(name: "CommentsOfUser")
+    post: Post! @relation(name: "CommentOfPost")
+    likes: [LikeOnComment!]! @relation(name: "LikeOfComment" onDelete:CASCADE)
+    createdAt: DateTime! @createdAt
+}
+
+type Meeting{
+    id: ID! @id
+    title: String!
+    main: Boolean!
+    user: User @relation(name:"MeetingsOfUser")
+    meetingTime: String!
+    meetingPlace: String!
+    meetingPrice: String!
+    deadline: String!
+    meetingHeadCounts: Int!
+    participants: [Participant!]! @ralation(name: "ParticipantsOfMeeting" onDelete:CASCADE)
+    createdAt: DateTime! @createdAt
+}
+
+
+type Participant{
+    id: ID! @id
+    user: User @relation(name:"ParticipantsOfUser")
+    meeting: Meeting! @realation(name: "ParticipantsOfMeeting")
+    createdAt: DateTime! @createdAt
+}
+
+type Book{ 
+    id: ID! @id
+    photo: [File!]!  @relation(name:"FileOfBook" onDelete:CASCADE)
+    title: String!
+    author: String! 
+    publisher: String!
+    content: String!
+    createdAt: DateTime! @createdAt
+    reservations: [Reservation!]! @relation(name:"ReservationOfBook" onDelete:CASCADE)
+}
+
+type Reservation{
+    id: ID! @id
+    user: User @realation(name:"ReservationsOfUser", onDelete:CASCADE)
+    book: Book! @relation(name:"ReservationOfBook")
+    startDate: String!
+    endDate: String!
+    createdAt: DateTime! @createdAt 
+}
+
+type View{ 
+    id: ID! @id
+    users: User
+    post: Post! @relation(name:"ViewOfPost")
+    createdAt: DateTime! @createdAt
+}
+
+type File{ 
+    id: ID! @id
+    url: String!
+    post: [Post] @relation(name: "FileOfPost")
+    book: [Book] @relation(name:"FileOfBook")
+    createdAt: DateTime! @createdAt
+}

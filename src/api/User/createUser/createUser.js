@@ -14,7 +14,7 @@ export default {
       } = args;
       const exists = await prisma.$exists.user({ email });
       if (exists) {
-        throw error("이메일이 이미 사용중입니다.");
+        throw Error("이메일이 이미 사용중입니다.");
       }
       try {
         await prisma.createUser({

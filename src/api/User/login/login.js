@@ -8,12 +8,12 @@ export default {
       const user = await prisma.user({ email });
       const exists = await prisma.$exists.user({ email });
       if (!exists) {
-        return "등록된 이메일이 아닙니다.";
+        throw error("등록된 이메일이 아닙니다.");
       }
       if (user.password === password) {
         return generateToken(user.id);
       } else {
-        return "비밀번호가 틀렸습니다.";
+        throw error("비밀번호가 틀렸습니다.");
       }
     }
   }

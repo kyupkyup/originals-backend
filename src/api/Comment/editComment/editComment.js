@@ -1,17 +1,16 @@
-import { prisma } from "../../../../originals-demo/generated/prisma-client";
+import { prisma } from "../../../../generated/prisma-client";
 import { isAuthenticated } from "../../../middleware";
 
 export default {
   Mutation: {
     editComment: async (_, args, request) => {
       isAuthenticated(request);
-      const {
-        id,
-        text,
-        action
-      } = args;
+      const { id, text, action } = args;
       const { user } = request;
-      const comment = await prisma.$exists.comment({id, user: { id: user.id }});
+      const comment = await prisma.$exists.comment({
+        id,
+        user: { id: user.id }
+      });
 
       if (comment) {
         if (action === "EDIT") {
@@ -25,9 +24,8 @@ export default {
           return prisma.deleteComment({
             id
           });
-        }
-        else{
-            throw Error("해당 작업을 수행할 수 없습니다.")
+        } else {
+          throw Error("해당 작업을 수행할 수 없습니다.");
         }
       }
     }

@@ -11,7 +11,11 @@ export default {
         user: { connect: { id: user.id } },
         meeting: { connect: { id: meetingId } }
       });
-      return participant;
+      if (participant) {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 };

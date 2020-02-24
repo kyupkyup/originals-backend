@@ -16,20 +16,20 @@ export default {
       if (exists) {
         throw Error("이메일이 이미 사용중입니다.");
       }
-      try {
-        await prisma.createUser({
-          avatar,
-          userName,
-          birthday,
-          phoneNum,
-          email,
-          password,
-          introduce,
-          classes
-        });
+
+      const user = await prisma.createUser({
+        avatar,
+        userName,
+        birthday,
+        phoneNum,
+        email,
+        password,
+        introduce,
+        classes
+      });
+      if (user) {
         return true;
-      } catch (e) {
-        console.log(e);
+      } else {
         return false;
       }
     }

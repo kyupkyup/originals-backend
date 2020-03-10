@@ -6,7 +6,6 @@ export default {
     seeParticipantsList: async (_, args, { request }) => {
       isAuthenticated(request);
       const { meetingId } = args;
-      console.log(args);
       return await prisma.participants({
         where: {
           meeting: {

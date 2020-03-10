@@ -8,6 +8,7 @@ export default {
     meetingTime: ({ id }) => prisma.meeting({ id }).meetingTime(),
     meetingPlace: ({ id }) => prisma.meeting({ id }).meetingPlace(),
     meetingPrice: ({ id }) => prisma.meeting({ id }).meetingPrice(),
+    coords: ({ id }) => prisma.meeting({ id }).coords(),
     deadline: ({ id }) => prisma.meeting({ id }).deadline(),
     meetingHeadCounts: ({ id }) => prisma.meeting({ id }).meetingHeadCounts(),
     participants: ({ id }) => prisma.meeting({ id }).participants(),

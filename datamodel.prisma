@@ -17,6 +17,7 @@ type User{
     reservations: [Reservation!] @realation(name:"ReservationsOfUser" onDelete:CASCADE)
     likes: [Like!] @relation(name: "LikesOfUser" onDelete:CASCADE)
     participants:[Participant!] @relation(name:"ParticipantsOfUser" onDelete:CASCADE)
+    files : [File] @relation(name:"FileOfUser")
     createdAt: DateTime! @createdAt
 }
 
@@ -77,6 +78,7 @@ type Meeting{
     meetingPrice: String!
     deadline: String!
     meetingHeadCounts: Int!
+    coords: String
     participants: [Participant!]! @ralation(name: "ParticipantsOfMeeting" onDelete:CASCADE)
     createdAt: DateTime! @createdAt
 }
@@ -91,7 +93,7 @@ type Participant{
 
 type Book{ 
     id: ID! @id
-    photo: [File!]!  @relation(name:"FileOfBook" onDelete:CASCADE)
+    files: [File!]!  @relation(name:"FileOfBook" onDelete:CASCADE)
     title: String!
     author: String! 
     publisher: String!
@@ -111,7 +113,7 @@ type Reservation{
 
 type View{ 
     id: ID! @id
-    users: User
+    user: User
     post: Post! @relation(name:"ViewOfPost")
     createdAt: DateTime! @createdAt
 }
@@ -119,7 +121,8 @@ type View{
 type File{ 
     id: ID! @id
     url: String!
-    post: [Post] @relation(name: "FileOfPost")
-    book: [Book] @relation(name:"FileOfBook")
+    post: Post @relation(name: "FileOfPost")
+    book: Book @relation(name:"FileOfBook")
+    user: User @relation(name:"FileOfUser")
     createdAt: DateTime! @createdAt
 }

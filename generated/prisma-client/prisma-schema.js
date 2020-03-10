@@ -57,7 +57,7 @@ type BatchPayload {
 
 type Book {
   id: ID!
-  photo(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File!]
+  files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File!]
   title: String!
   author: String!
   publisher: String!
@@ -74,7 +74,7 @@ type BookConnection {
 
 input BookCreateInput {
   id: ID
-  photo: FileCreateManyWithoutBookInput
+  files: FileCreateManyWithoutBookInput
   title: String!
   author: String!
   publisher: String!
@@ -82,9 +82,9 @@ input BookCreateInput {
   reservations: ReservationCreateManyWithoutBookInput
 }
 
-input BookCreateManyWithoutPhotoInput {
-  create: [BookCreateWithoutPhotoInput!]
-  connect: [BookWhereUniqueInput!]
+input BookCreateOneWithoutFilesInput {
+  create: BookCreateWithoutFilesInput
+  connect: BookWhereUniqueInput
 }
 
 input BookCreateOneWithoutReservationsInput {
@@ -92,7 +92,7 @@ input BookCreateOneWithoutReservationsInput {
   connect: BookWhereUniqueInput
 }
 
-input BookCreateWithoutPhotoInput {
+input BookCreateWithoutFilesInput {
   id: ID
   title: String!
   author: String!
@@ -103,7 +103,7 @@ input BookCreateWithoutPhotoInput {
 
 input BookCreateWithoutReservationsInput {
   id: ID
-  photo: FileCreateManyWithoutBookInput
+  files: FileCreateManyWithoutBookInput
   title: String!
   author: String!
   publisher: String!
@@ -139,90 +139,6 @@ type BookPreviousValues {
   createdAt: DateTime!
 }
 
-input BookScalarWhereInput {
-  id: ID
-  id_not: ID
-  id_in: [ID!]
-  id_not_in: [ID!]
-  id_lt: ID
-  id_lte: ID
-  id_gt: ID
-  id_gte: ID
-  id_contains: ID
-  id_not_contains: ID
-  id_starts_with: ID
-  id_not_starts_with: ID
-  id_ends_with: ID
-  id_not_ends_with: ID
-  title: String
-  title_not: String
-  title_in: [String!]
-  title_not_in: [String!]
-  title_lt: String
-  title_lte: String
-  title_gt: String
-  title_gte: String
-  title_contains: String
-  title_not_contains: String
-  title_starts_with: String
-  title_not_starts_with: String
-  title_ends_with: String
-  title_not_ends_with: String
-  author: String
-  author_not: String
-  author_in: [String!]
-  author_not_in: [String!]
-  author_lt: String
-  author_lte: String
-  author_gt: String
-  author_gte: String
-  author_contains: String
-  author_not_contains: String
-  author_starts_with: String
-  author_not_starts_with: String
-  author_ends_with: String
-  author_not_ends_with: String
-  publisher: String
-  publisher_not: String
-  publisher_in: [String!]
-  publisher_not_in: [String!]
-  publisher_lt: String
-  publisher_lte: String
-  publisher_gt: String
-  publisher_gte: String
-  publisher_contains: String
-  publisher_not_contains: String
-  publisher_starts_with: String
-  publisher_not_starts_with: String
-  publisher_ends_with: String
-  publisher_not_ends_with: String
-  content: String
-  content_not: String
-  content_in: [String!]
-  content_not_in: [String!]
-  content_lt: String
-  content_lte: String
-  content_gt: String
-  content_gte: String
-  content_contains: String
-  content_not_contains: String
-  content_starts_with: String
-  content_not_starts_with: String
-  content_ends_with: String
-  content_not_ends_with: String
-  createdAt: DateTime
-  createdAt_not: DateTime
-  createdAt_in: [DateTime!]
-  createdAt_not_in: [DateTime!]
-  createdAt_lt: DateTime
-  createdAt_lte: DateTime
-  createdAt_gt: DateTime
-  createdAt_gte: DateTime
-  AND: [BookScalarWhereInput!]
-  OR: [BookScalarWhereInput!]
-  NOT: [BookScalarWhereInput!]
-}
-
 type BookSubscriptionPayload {
   mutation: MutationType!
   node: Book
@@ -242,19 +158,12 @@ input BookSubscriptionWhereInput {
 }
 
 input BookUpdateInput {
-  photo: FileUpdateManyWithoutBookInput
+  files: FileUpdateManyWithoutBookInput
   title: String
   author: String
   publisher: String
   content: String
   reservations: ReservationUpdateManyWithoutBookInput
-}
-
-input BookUpdateManyDataInput {
-  title: String
-  author: String
-  publisher: String
-  content: String
 }
 
 input BookUpdateManyMutationInput {
@@ -264,23 +173,6 @@ input BookUpdateManyMutationInput {
   content: String
 }
 
-input BookUpdateManyWithoutPhotoInput {
-  create: [BookCreateWithoutPhotoInput!]
-  delete: [BookWhereUniqueInput!]
-  connect: [BookWhereUniqueInput!]
-  set: [BookWhereUniqueInput!]
-  disconnect: [BookWhereUniqueInput!]
-  update: [BookUpdateWithWhereUniqueWithoutPhotoInput!]
-  upsert: [BookUpsertWithWhereUniqueWithoutPhotoInput!]
-  deleteMany: [BookScalarWhereInput!]
-  updateMany: [BookUpdateManyWithWhereNestedInput!]
-}
-
-input BookUpdateManyWithWhereNestedInput {
-  where: BookScalarWhereInput!
-  data: BookUpdateManyDataInput!
-}
-
 input BookUpdateOneRequiredWithoutReservationsInput {
   create: BookCreateWithoutReservationsInput
   update: BookUpdateWithoutReservationsDataInput
@@ -288,7 +180,16 @@ input BookUpdateOneRequiredWithoutReservationsInput {
   connect: BookWhereUniqueInput
 }
 
-input BookUpdateWithoutPhotoDataInput {
+input BookUpdateOneWithoutFilesInput {
+  create: BookCreateWithoutFilesInput
+  update: BookUpdateWithoutFilesDataInput
+  upsert: BookUpsertWithoutFilesInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: BookWhereUniqueInput
+}
+
+input BookUpdateWithoutFilesDataInput {
   title: String
   author: String
   publisher: String
@@ -297,27 +198,21 @@ input BookUpdateWithoutPhotoDataInput {
 }
 
 input BookUpdateWithoutReservationsDataInput {
-  photo: FileUpdateManyWithoutBookInput
+  files: FileUpdateManyWithoutBookInput
   title: String
   author: String
   publisher: String
   content: String
 }
 
-input BookUpdateWithWhereUniqueWithoutPhotoInput {
-  where: BookWhereUniqueInput!
-  data: BookUpdateWithoutPhotoDataInput!
+input BookUpsertWithoutFilesInput {
+  update: BookUpdateWithoutFilesDataInput!
+  create: BookCreateWithoutFilesInput!
 }
 
 input BookUpsertWithoutReservationsInput {
   update: BookUpdateWithoutReservationsDataInput!
   create: BookCreateWithoutReservationsInput!
-}
-
-input BookUpsertWithWhereUniqueWithoutPhotoInput {
-  where: BookWhereUniqueInput!
-  update: BookUpdateWithoutPhotoDataInput!
-  create: BookCreateWithoutPhotoInput!
 }
 
 input BookWhereInput {
@@ -335,9 +230,9 @@ input BookWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  photo_every: FileWhereInput
-  photo_some: FileWhereInput
-  photo_none: FileWhereInput
+  files_every: FileWhereInput
+  files_some: FileWhereInput
+  files_none: FileWhereInput
   title: String
   title_not: String
   title_in: [String!]
@@ -828,8 +723,9 @@ scalar DateTime
 type File {
   id: ID!
   url: String!
-  post(where: PostWhereInput, orderBy: PostOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Post!]
-  book(where: BookWhereInput, orderBy: BookOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Book!]
+  post: Post
+  book: Book
+  user: User
   createdAt: DateTime!
 }
 
@@ -842,8 +738,9 @@ type FileConnection {
 input FileCreateInput {
   id: ID
   url: String!
-  post: PostCreateManyWithoutFilesInput
-  book: BookCreateManyWithoutPhotoInput
+  post: PostCreateOneWithoutFilesInput
+  book: BookCreateOneWithoutFilesInput
+  user: UserCreateOneWithoutFilesInput
 }
 
 input FileCreateManyWithoutBookInput {
@@ -856,16 +753,30 @@ input FileCreateManyWithoutPostInput {
   connect: [FileWhereUniqueInput!]
 }
 
+input FileCreateManyWithoutUserInput {
+  create: [FileCreateWithoutUserInput!]
+  connect: [FileWhereUniqueInput!]
+}
+
 input FileCreateWithoutBookInput {
   id: ID
   url: String!
-  post: PostCreateManyWithoutFilesInput
+  post: PostCreateOneWithoutFilesInput
+  user: UserCreateOneWithoutFilesInput
 }
 
 input FileCreateWithoutPostInput {
   id: ID
   url: String!
-  book: BookCreateManyWithoutPhotoInput
+  book: BookCreateOneWithoutFilesInput
+  user: UserCreateOneWithoutFilesInput
+}
+
+input FileCreateWithoutUserInput {
+  id: ID
+  url: String!
+  post: PostCreateOneWithoutFilesInput
+  book: BookCreateOneWithoutFilesInput
 }
 
 type FileEdge {
@@ -950,8 +861,9 @@ input FileSubscriptionWhereInput {
 
 input FileUpdateInput {
   url: String
-  post: PostUpdateManyWithoutFilesInput
-  book: BookUpdateManyWithoutPhotoInput
+  post: PostUpdateOneWithoutFilesInput
+  book: BookUpdateOneWithoutFilesInput
+  user: UserUpdateOneWithoutFilesInput
 }
 
 input FileUpdateManyDataInput {
@@ -986,6 +898,18 @@ input FileUpdateManyWithoutPostInput {
   updateMany: [FileUpdateManyWithWhereNestedInput!]
 }
 
+input FileUpdateManyWithoutUserInput {
+  create: [FileCreateWithoutUserInput!]
+  delete: [FileWhereUniqueInput!]
+  connect: [FileWhereUniqueInput!]
+  set: [FileWhereUniqueInput!]
+  disconnect: [FileWhereUniqueInput!]
+  update: [FileUpdateWithWhereUniqueWithoutUserInput!]
+  upsert: [FileUpsertWithWhereUniqueWithoutUserInput!]
+  deleteMany: [FileScalarWhereInput!]
+  updateMany: [FileUpdateManyWithWhereNestedInput!]
+}
+
 input FileUpdateManyWithWhereNestedInput {
   where: FileScalarWhereInput!
   data: FileUpdateManyDataInput!
@@ -993,12 +917,20 @@ input FileUpdateManyWithWhereNestedInput {
 
 input FileUpdateWithoutBookDataInput {
   url: String
-  post: PostUpdateManyWithoutFilesInput
+  post: PostUpdateOneWithoutFilesInput
+  user: UserUpdateOneWithoutFilesInput
 }
 
 input FileUpdateWithoutPostDataInput {
   url: String
-  book: BookUpdateManyWithoutPhotoInput
+  book: BookUpdateOneWithoutFilesInput
+  user: UserUpdateOneWithoutFilesInput
+}
+
+input FileUpdateWithoutUserDataInput {
+  url: String
+  post: PostUpdateOneWithoutFilesInput
+  book: BookUpdateOneWithoutFilesInput
 }
 
 input FileUpdateWithWhereUniqueWithoutBookInput {
@@ -1011,6 +943,11 @@ input FileUpdateWithWhereUniqueWithoutPostInput {
   data: FileUpdateWithoutPostDataInput!
 }
 
+input FileUpdateWithWhereUniqueWithoutUserInput {
+  where: FileWhereUniqueInput!
+  data: FileUpdateWithoutUserDataInput!
+}
+
 input FileUpsertWithWhereUniqueWithoutBookInput {
   where: FileWhereUniqueInput!
   update: FileUpdateWithoutBookDataInput!
@@ -1021,6 +958,12 @@ input FileUpsertWithWhereUniqueWithoutPostInput {
   where: FileWhereUniqueInput!
   update: FileUpdateWithoutPostDataInput!
   create: FileCreateWithoutPostInput!
+}
+
+input FileUpsertWithWhereUniqueWithoutUserInput {
+  where: FileWhereUniqueInput!
+  update: FileUpdateWithoutUserDataInput!
+  create: FileCreateWithoutUserInput!
 }
 
 input FileWhereInput {
@@ -1052,12 +995,9 @@ input FileWhereInput {
   url_not_starts_with: String
   url_ends_with: String
   url_not_ends_with: String
-  post_every: PostWhereInput
-  post_some: PostWhereInput
-  post_none: PostWhereInput
-  book_every: BookWhereInput
-  book_some: BookWhereInput
-  book_none: BookWhereInput
+  post: PostWhereInput
+  book: BookWhereInput
+  user: UserWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -1437,6 +1377,7 @@ type Meeting {
   meetingPrice: String!
   deadline: String!
   meetingHeadCounts: Int!
+  coords: String
   participants(where: ParticipantWhereInput, orderBy: ParticipantOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Participant!]
   createdAt: DateTime!
 }
@@ -1457,6 +1398,7 @@ input MeetingCreateInput {
   meetingPrice: String!
   deadline: String!
   meetingHeadCounts: Int!
+  coords: String
   participants: ParticipantCreateManyWithoutMeetingInput
 }
 
@@ -1480,6 +1422,7 @@ input MeetingCreateWithoutParticipantsInput {
   meetingPrice: String!
   deadline: String!
   meetingHeadCounts: Int!
+  coords: String
 }
 
 input MeetingCreateWithoutUserInput {
@@ -1491,6 +1434,7 @@ input MeetingCreateWithoutUserInput {
   meetingPrice: String!
   deadline: String!
   meetingHeadCounts: Int!
+  coords: String
   participants: ParticipantCreateManyWithoutMeetingInput
 }
 
@@ -1516,6 +1460,8 @@ enum MeetingOrderByInput {
   deadline_DESC
   meetingHeadCounts_ASC
   meetingHeadCounts_DESC
+  coords_ASC
+  coords_DESC
   createdAt_ASC
   createdAt_DESC
 }
@@ -1529,6 +1475,7 @@ type MeetingPreviousValues {
   meetingPrice: String!
   deadline: String!
   meetingHeadCounts: Int!
+  coords: String
   createdAt: DateTime!
 }
 
@@ -1627,6 +1574,20 @@ input MeetingScalarWhereInput {
   meetingHeadCounts_lte: Int
   meetingHeadCounts_gt: Int
   meetingHeadCounts_gte: Int
+  coords: String
+  coords_not: String
+  coords_in: [String!]
+  coords_not_in: [String!]
+  coords_lt: String
+  coords_lte: String
+  coords_gt: String
+  coords_gte: String
+  coords_contains: String
+  coords_not_contains: String
+  coords_starts_with: String
+  coords_not_starts_with: String
+  coords_ends_with: String
+  coords_not_ends_with: String
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -1667,6 +1628,7 @@ input MeetingUpdateInput {
   meetingPrice: String
   deadline: String
   meetingHeadCounts: Int
+  coords: String
   participants: ParticipantUpdateManyWithoutMeetingInput
 }
 
@@ -1678,6 +1640,7 @@ input MeetingUpdateManyDataInput {
   meetingPrice: String
   deadline: String
   meetingHeadCounts: Int
+  coords: String
 }
 
 input MeetingUpdateManyMutationInput {
@@ -1688,6 +1651,7 @@ input MeetingUpdateManyMutationInput {
   meetingPrice: String
   deadline: String
   meetingHeadCounts: Int
+  coords: String
 }
 
 input MeetingUpdateManyWithoutUserInput {
@@ -1723,6 +1687,7 @@ input MeetingUpdateWithoutParticipantsDataInput {
   meetingPrice: String
   deadline: String
   meetingHeadCounts: Int
+  coords: String
 }
 
 input MeetingUpdateWithoutUserDataInput {
@@ -1733,6 +1698,7 @@ input MeetingUpdateWithoutUserDataInput {
   meetingPrice: String
   deadline: String
   meetingHeadCounts: Int
+  coords: String
   participants: ParticipantUpdateManyWithoutMeetingInput
 }
 
@@ -1848,6 +1814,20 @@ input MeetingWhereInput {
   meetingHeadCounts_lte: Int
   meetingHeadCounts_gt: Int
   meetingHeadCounts_gte: Int
+  coords: String
+  coords_not: String
+  coords_in: [String!]
+  coords_not_in: [String!]
+  coords_lt: String
+  coords_lte: String
+  coords_gt: String
+  coords_gte: String
+  coords_contains: String
+  coords_not_contains: String
+  coords_starts_with: String
+  coords_not_starts_with: String
+  coords_ends_with: String
+  coords_not_ends_with: String
   participants_every: ParticipantWhereInput
   participants_some: ParticipantWhereInput
   participants_none: ParticipantWhereInput
@@ -2197,13 +2177,13 @@ input PostCreateManyWithoutBulletinListInput {
   connect: [PostWhereUniqueInput!]
 }
 
-input PostCreateManyWithoutFilesInput {
-  create: [PostCreateWithoutFilesInput!]
-  connect: [PostWhereUniqueInput!]
-}
-
 input PostCreateOneWithoutCommentsInput {
   create: PostCreateWithoutCommentsInput
+  connect: PostWhereUniqueInput
+}
+
+input PostCreateOneWithoutFilesInput {
+  create: PostCreateWithoutFilesInput
   connect: PostWhereUniqueInput
 }
 
@@ -2484,18 +2464,6 @@ input PostUpdateManyWithoutBulletinListInput {
   updateMany: [PostUpdateManyWithWhereNestedInput!]
 }
 
-input PostUpdateManyWithoutFilesInput {
-  create: [PostCreateWithoutFilesInput!]
-  delete: [PostWhereUniqueInput!]
-  connect: [PostWhereUniqueInput!]
-  set: [PostWhereUniqueInput!]
-  disconnect: [PostWhereUniqueInput!]
-  update: [PostUpdateWithWhereUniqueWithoutFilesInput!]
-  upsert: [PostUpsertWithWhereUniqueWithoutFilesInput!]
-  deleteMany: [PostScalarWhereInput!]
-  updateMany: [PostUpdateManyWithWhereNestedInput!]
-}
-
 input PostUpdateManyWithWhereNestedInput {
   where: PostScalarWhereInput!
   data: PostUpdateManyDataInput!
@@ -2519,6 +2487,15 @@ input PostUpdateOneRequiredWithoutViewsInput {
   create: PostCreateWithoutViewsInput
   update: PostUpdateWithoutViewsDataInput
   upsert: PostUpsertWithoutViewsInput
+  connect: PostWhereUniqueInput
+}
+
+input PostUpdateOneWithoutFilesInput {
+  create: PostCreateWithoutFilesInput
+  update: PostUpdateWithoutFilesDataInput
+  upsert: PostUpsertWithoutFilesInput
+  delete: Boolean
+  disconnect: Boolean
   connect: PostWhereUniqueInput
 }
 
@@ -2610,14 +2587,14 @@ input PostUpdateWithWhereUniqueWithoutBulletinListInput {
   data: PostUpdateWithoutBulletinListDataInput!
 }
 
-input PostUpdateWithWhereUniqueWithoutFilesInput {
-  where: PostWhereUniqueInput!
-  data: PostUpdateWithoutFilesDataInput!
-}
-
 input PostUpsertWithoutCommentsInput {
   update: PostUpdateWithoutCommentsDataInput!
   create: PostCreateWithoutCommentsInput!
+}
+
+input PostUpsertWithoutFilesInput {
+  update: PostUpdateWithoutFilesDataInput!
+  create: PostCreateWithoutFilesInput!
 }
 
 input PostUpsertWithoutLikesInput {
@@ -2640,12 +2617,6 @@ input PostUpsertWithWhereUniqueWithoutBulletinListInput {
   where: PostWhereUniqueInput!
   update: PostUpdateWithoutBulletinListDataInput!
   create: PostCreateWithoutBulletinListInput!
-}
-
-input PostUpsertWithWhereUniqueWithoutFilesInput {
-  where: PostWhereUniqueInput!
-  update: PostUpdateWithoutFilesDataInput!
-  create: PostCreateWithoutFilesInput!
 }
 
 input PostWhereInput {
@@ -3099,6 +3070,7 @@ type User {
   reservations(where: ReservationWhereInput, orderBy: ReservationOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Reservation!]
   likes(where: LikeWhereInput, orderBy: LikeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Like!]
   participants(where: ParticipantWhereInput, orderBy: ParticipantOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Participant!]
+  files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File!]
   createdAt: DateTime!
 }
 
@@ -3124,6 +3096,7 @@ input UserCreateInput {
   reservations: ReservationCreateManyWithoutUserInput
   likes: LikeCreateManyWithoutUserInput
   participants: ParticipantCreateManyWithoutUserInput
+  files: FileCreateManyWithoutUserInput
 }
 
 input UserCreateOneInput {
@@ -3133,6 +3106,11 @@ input UserCreateOneInput {
 
 input UserCreateOneWithoutCommentsInput {
   create: UserCreateWithoutCommentsInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutFilesInput {
+  create: UserCreateWithoutFilesInput
   connect: UserWhereUniqueInput
 }
 
@@ -3176,6 +3154,25 @@ input UserCreateWithoutCommentsInput {
   reservations: ReservationCreateManyWithoutUserInput
   likes: LikeCreateManyWithoutUserInput
   participants: ParticipantCreateManyWithoutUserInput
+  files: FileCreateManyWithoutUserInput
+}
+
+input UserCreateWithoutFilesInput {
+  id: ID
+  avatar: String
+  userName: String
+  birthday: String
+  phoneNum: String
+  email: String!
+  introduce: String
+  password: String
+  classes: Int!
+  meetings: MeetingCreateManyWithoutUserInput
+  posts: PostCreateManyWithoutAuthorInput
+  comments: CommentCreateManyWithoutUserInput
+  reservations: ReservationCreateManyWithoutUserInput
+  likes: LikeCreateManyWithoutUserInput
+  participants: ParticipantCreateManyWithoutUserInput
 }
 
 input UserCreateWithoutLikesInput {
@@ -3193,6 +3190,7 @@ input UserCreateWithoutLikesInput {
   comments: CommentCreateManyWithoutUserInput
   reservations: ReservationCreateManyWithoutUserInput
   participants: ParticipantCreateManyWithoutUserInput
+  files: FileCreateManyWithoutUserInput
 }
 
 input UserCreateWithoutMeetingsInput {
@@ -3210,6 +3208,7 @@ input UserCreateWithoutMeetingsInput {
   reservations: ReservationCreateManyWithoutUserInput
   likes: LikeCreateManyWithoutUserInput
   participants: ParticipantCreateManyWithoutUserInput
+  files: FileCreateManyWithoutUserInput
 }
 
 input UserCreateWithoutParticipantsInput {
@@ -3227,6 +3226,7 @@ input UserCreateWithoutParticipantsInput {
   comments: CommentCreateManyWithoutUserInput
   reservations: ReservationCreateManyWithoutUserInput
   likes: LikeCreateManyWithoutUserInput
+  files: FileCreateManyWithoutUserInput
 }
 
 input UserCreateWithoutPostsInput {
@@ -3244,6 +3244,7 @@ input UserCreateWithoutPostsInput {
   reservations: ReservationCreateManyWithoutUserInput
   likes: LikeCreateManyWithoutUserInput
   participants: ParticipantCreateManyWithoutUserInput
+  files: FileCreateManyWithoutUserInput
 }
 
 input UserCreateWithoutReservationsInput {
@@ -3261,6 +3262,7 @@ input UserCreateWithoutReservationsInput {
   comments: CommentCreateManyWithoutUserInput
   likes: LikeCreateManyWithoutUserInput
   participants: ParticipantCreateManyWithoutUserInput
+  files: FileCreateManyWithoutUserInput
 }
 
 type UserEdge {
@@ -3337,6 +3339,7 @@ input UserUpdateDataInput {
   reservations: ReservationUpdateManyWithoutUserInput
   likes: LikeUpdateManyWithoutUserInput
   participants: ParticipantUpdateManyWithoutUserInput
+  files: FileUpdateManyWithoutUserInput
 }
 
 input UserUpdateInput {
@@ -3354,6 +3357,7 @@ input UserUpdateInput {
   reservations: ReservationUpdateManyWithoutUserInput
   likes: LikeUpdateManyWithoutUserInput
   participants: ParticipantUpdateManyWithoutUserInput
+  files: FileUpdateManyWithoutUserInput
 }
 
 input UserUpdateManyMutationInput {
@@ -3380,6 +3384,15 @@ input UserUpdateOneWithoutCommentsInput {
   create: UserCreateWithoutCommentsInput
   update: UserUpdateWithoutCommentsDataInput
   upsert: UserUpsertWithoutCommentsInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneWithoutFilesInput {
+  create: UserCreateWithoutFilesInput
+  update: UserUpdateWithoutFilesDataInput
+  upsert: UserUpsertWithoutFilesInput
   delete: Boolean
   disconnect: Boolean
   connect: UserWhereUniqueInput
@@ -3444,6 +3457,24 @@ input UserUpdateWithoutCommentsDataInput {
   reservations: ReservationUpdateManyWithoutUserInput
   likes: LikeUpdateManyWithoutUserInput
   participants: ParticipantUpdateManyWithoutUserInput
+  files: FileUpdateManyWithoutUserInput
+}
+
+input UserUpdateWithoutFilesDataInput {
+  avatar: String
+  userName: String
+  birthday: String
+  phoneNum: String
+  email: String
+  introduce: String
+  password: String
+  classes: Int
+  meetings: MeetingUpdateManyWithoutUserInput
+  posts: PostUpdateManyWithoutAuthorInput
+  comments: CommentUpdateManyWithoutUserInput
+  reservations: ReservationUpdateManyWithoutUserInput
+  likes: LikeUpdateManyWithoutUserInput
+  participants: ParticipantUpdateManyWithoutUserInput
 }
 
 input UserUpdateWithoutLikesDataInput {
@@ -3460,6 +3491,7 @@ input UserUpdateWithoutLikesDataInput {
   comments: CommentUpdateManyWithoutUserInput
   reservations: ReservationUpdateManyWithoutUserInput
   participants: ParticipantUpdateManyWithoutUserInput
+  files: FileUpdateManyWithoutUserInput
 }
 
 input UserUpdateWithoutMeetingsDataInput {
@@ -3476,6 +3508,7 @@ input UserUpdateWithoutMeetingsDataInput {
   reservations: ReservationUpdateManyWithoutUserInput
   likes: LikeUpdateManyWithoutUserInput
   participants: ParticipantUpdateManyWithoutUserInput
+  files: FileUpdateManyWithoutUserInput
 }
 
 input UserUpdateWithoutParticipantsDataInput {
@@ -3492,6 +3525,7 @@ input UserUpdateWithoutParticipantsDataInput {
   comments: CommentUpdateManyWithoutUserInput
   reservations: ReservationUpdateManyWithoutUserInput
   likes: LikeUpdateManyWithoutUserInput
+  files: FileUpdateManyWithoutUserInput
 }
 
 input UserUpdateWithoutPostsDataInput {
@@ -3508,6 +3542,7 @@ input UserUpdateWithoutPostsDataInput {
   reservations: ReservationUpdateManyWithoutUserInput
   likes: LikeUpdateManyWithoutUserInput
   participants: ParticipantUpdateManyWithoutUserInput
+  files: FileUpdateManyWithoutUserInput
 }
 
 input UserUpdateWithoutReservationsDataInput {
@@ -3524,6 +3559,7 @@ input UserUpdateWithoutReservationsDataInput {
   comments: CommentUpdateManyWithoutUserInput
   likes: LikeUpdateManyWithoutUserInput
   participants: ParticipantUpdateManyWithoutUserInput
+  files: FileUpdateManyWithoutUserInput
 }
 
 input UserUpsertNestedInput {
@@ -3534,6 +3570,11 @@ input UserUpsertNestedInput {
 input UserUpsertWithoutCommentsInput {
   update: UserUpdateWithoutCommentsDataInput!
   create: UserCreateWithoutCommentsInput!
+}
+
+input UserUpsertWithoutFilesInput {
+  update: UserUpdateWithoutFilesDataInput!
+  create: UserCreateWithoutFilesInput!
 }
 
 input UserUpsertWithoutLikesInput {
@@ -3700,6 +3741,9 @@ input UserWhereInput {
   participants_every: ParticipantWhereInput
   participants_some: ParticipantWhereInput
   participants_none: ParticipantWhereInput
+  files_every: FileWhereInput
+  files_some: FileWhereInput
+  files_none: FileWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -3721,7 +3765,7 @@ input UserWhereUniqueInput {
 
 type View {
   id: ID!
-  users: User
+  user: User
   post: Post!
   createdAt: DateTime!
 }
@@ -3734,7 +3778,7 @@ type ViewConnection {
 
 input ViewCreateInput {
   id: ID
-  users: UserCreateOneInput
+  user: UserCreateOneInput
   post: PostCreateOneWithoutViewsInput!
 }
 
@@ -3745,7 +3789,7 @@ input ViewCreateManyWithoutPostInput {
 
 input ViewCreateWithoutPostInput {
   id: ID
-  users: UserCreateOneInput
+  user: UserCreateOneInput
 }
 
 type ViewEdge {
@@ -3812,7 +3856,7 @@ input ViewSubscriptionWhereInput {
 }
 
 input ViewUpdateInput {
-  users: UserUpdateOneInput
+  user: UserUpdateOneInput
   post: PostUpdateOneRequiredWithoutViewsInput
 }
 
@@ -3828,7 +3872,7 @@ input ViewUpdateManyWithoutPostInput {
 }
 
 input ViewUpdateWithoutPostDataInput {
-  users: UserUpdateOneInput
+  user: UserUpdateOneInput
 }
 
 input ViewUpdateWithWhereUniqueWithoutPostInput {
@@ -3857,7 +3901,7 @@ input ViewWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  users: UserWhereInput
+  user: UserWhereInput
   post: PostWhereInput
   createdAt: DateTime
   createdAt_not: DateTime

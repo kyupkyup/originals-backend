@@ -13,6 +13,7 @@ export default {
         meetingPlace,
         meetingPrice,
         deadline,
+        coords,
         meetingHeadCounts,
         action
       } = args;
@@ -37,6 +38,7 @@ export default {
               meetingPlace,
               meetingPrice,
               deadline,
+              coords,
               meetingHeadCounts
             },
             where: {

@@ -7,7 +7,6 @@ export default {
       isAuthenticated(request);
       const { id } = args;
       const meeting = await prisma.meeting({ id });
-      console.log(meeting);
       return meeting;
     }
   }

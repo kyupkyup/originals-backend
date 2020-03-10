@@ -24,6 +24,7 @@ export default {
         };
         try {
           const existingView = await prisma.$exists.view(filterOptions);
+          console.log(existingView);
           if (existingView) {
           } else {
             await prisma.createView({
@@ -39,8 +40,10 @@ export default {
               }
             });
           }
+          console.log("트루");
           return true;
         } catch {
+          console.log("펄스");
           return false;
         }
       }

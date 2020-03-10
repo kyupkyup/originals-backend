@@ -13,6 +13,7 @@ export default {
         meetingPlace,
         meetingPrice,
         deadline,
+        coords,
         meetingHeadCounts
       } = args;
       if (main === true) {
@@ -28,6 +29,7 @@ export default {
         meetingPlace,
         meetingPrice,
         deadline,
+        coords,
         meetingHeadCounts
       });
 

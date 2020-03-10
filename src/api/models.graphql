@@ -19,6 +19,7 @@ type User {
   reservationsCount: Int!
   participants: [Participant!]!
   participantsCount: Int!
+  file: File
   isSelf: Boolean!
   createdAt: String!
 }
@@ -85,6 +86,7 @@ type Meeting {
   meetingPlace: String!
   meetingPrice: String!
   deadline: String!
+  coords: String
   meetingHeadCounts: Int!
   participants: [Participant!]!
   isParticipated: Boolean
@@ -122,7 +124,7 @@ type Reservation {
 
 type View {
   id: ID!
-  users: [User]
+  user: [User]
   post: Post!
   createdAt: String!
 }
@@ -132,5 +134,6 @@ type File {
   url: String!
   post: Post
   book: Book
+  user: User
   createdAt: String!
 }

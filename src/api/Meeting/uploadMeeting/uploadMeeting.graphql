@@ -6,6 +6,7 @@ type Mutation {
     meetingPlace: String!
     meetingPrice: String!
     deadline: String!
+    coords: String
     meetingHeadCounts: Int!
-  ): Post!
+  ): Meeting!
 }

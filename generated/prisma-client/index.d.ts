@@ -1035,7 +1035,7 @@ export interface ParticipantWhereInput {
 
 export interface PostUpdateWithoutFilesDataInput {
   author?: Maybe<UserUpdateOneWithoutPostsInput>;
-  classifyNum?: Maybe<Int>;
+  classifyNum?: Maybe<String>;
   main?: Maybe<Boolean>;
   announcement?: Maybe<Boolean>;
   title?: Maybe<String>;
@@ -1476,7 +1476,7 @@ export interface ParticipantUpdateManyWithoutMeetingInput {
 export interface PostUpdateWithoutViewsDataInput {
   files?: Maybe<FileUpdateManyWithoutPostInput>;
   author?: Maybe<UserUpdateOneWithoutPostsInput>;
-  classifyNum?: Maybe<Int>;
+  classifyNum?: Maybe<String>;
   main?: Maybe<Boolean>;
   announcement?: Maybe<Boolean>;
   title?: Maybe<String>;
@@ -1503,7 +1503,7 @@ export interface PostCreateWithoutViewsInput {
   id?: Maybe<ID_Input>;
   files?: Maybe<FileCreateManyWithoutPostInput>;
   author?: Maybe<UserCreateOneWithoutPostsInput>;
-  classifyNum: Int;
+  classifyNum: String;
   main: Boolean;
   announcement: Boolean;
   title: String;
@@ -1595,7 +1595,7 @@ export interface ReservationUpdateInput {
 
 export interface PostUpdateWithoutAuthorDataInput {
   files?: Maybe<FileUpdateManyWithoutPostInput>;
-  classifyNum?: Maybe<Int>;
+  classifyNum?: Maybe<String>;
   main?: Maybe<Boolean>;
   announcement?: Maybe<Boolean>;
   title?: Maybe<String>;
@@ -1607,7 +1607,7 @@ export interface PostUpdateWithoutAuthorDataInput {
 }
 
 export interface PostUpdateManyMutationInput {
-  classifyNum?: Maybe<Int>;
+  classifyNum?: Maybe<String>;
   main?: Maybe<Boolean>;
   announcement?: Maybe<Boolean>;
   title?: Maybe<String>;
@@ -1637,7 +1637,7 @@ export interface FileUpdateManyWithoutPostInput {
 export interface PostUpdateInput {
   files?: Maybe<FileUpdateManyWithoutPostInput>;
   author?: Maybe<UserUpdateOneWithoutPostsInput>;
-  classifyNum?: Maybe<Int>;
+  classifyNum?: Maybe<String>;
   main?: Maybe<Boolean>;
   announcement?: Maybe<Boolean>;
   title?: Maybe<String>;
@@ -1789,7 +1789,7 @@ export interface CommentCreateOneWithoutLikesInput {
 export interface PostUpdateWithoutBulletinListDataInput {
   files?: Maybe<FileUpdateManyWithoutPostInput>;
   author?: Maybe<UserUpdateOneWithoutPostsInput>;
-  classifyNum?: Maybe<Int>;
+  classifyNum?: Maybe<String>;
   main?: Maybe<Boolean>;
   announcement?: Maybe<Boolean>;
   title?: Maybe<String>;
@@ -1910,7 +1910,7 @@ export interface CommentUpdateManyMutationInput {
 export interface PostUpdateWithoutCommentsDataInput {
   files?: Maybe<FileUpdateManyWithoutPostInput>;
   author?: Maybe<UserUpdateOneWithoutPostsInput>;
-  classifyNum?: Maybe<Int>;
+  classifyNum?: Maybe<String>;
   main?: Maybe<Boolean>;
   announcement?: Maybe<Boolean>;
   title?: Maybe<String>;
@@ -2278,7 +2278,7 @@ export interface LikeCreateManyWithoutUserInput {
 export interface PostUpdateWithoutLikesDataInput {
   files?: Maybe<FileUpdateManyWithoutPostInput>;
   author?: Maybe<UserUpdateOneWithoutPostsInput>;
-  classifyNum?: Maybe<Int>;
+  classifyNum?: Maybe<String>;
   main?: Maybe<Boolean>;
   announcement?: Maybe<Boolean>;
   title?: Maybe<String>;
@@ -2619,14 +2619,20 @@ export interface PostWhereInput {
   files_some?: Maybe<FileWhereInput>;
   files_none?: Maybe<FileWhereInput>;
   author?: Maybe<UserWhereInput>;
-  classifyNum?: Maybe<Int>;
-  classifyNum_not?: Maybe<Int>;
-  classifyNum_in?: Maybe<Int[] | Int>;
-  classifyNum_not_in?: Maybe<Int[] | Int>;
-  classifyNum_lt?: Maybe<Int>;
-  classifyNum_lte?: Maybe<Int>;
-  classifyNum_gt?: Maybe<Int>;
-  classifyNum_gte?: Maybe<Int>;
+  classifyNum?: Maybe<String>;
+  classifyNum_not?: Maybe<String>;
+  classifyNum_in?: Maybe<String[] | String>;
+  classifyNum_not_in?: Maybe<String[] | String>;
+  classifyNum_lt?: Maybe<String>;
+  classifyNum_lte?: Maybe<String>;
+  classifyNum_gt?: Maybe<String>;
+  classifyNum_gte?: Maybe<String>;
+  classifyNum_contains?: Maybe<String>;
+  classifyNum_not_contains?: Maybe<String>;
+  classifyNum_starts_with?: Maybe<String>;
+  classifyNum_not_starts_with?: Maybe<String>;
+  classifyNum_ends_with?: Maybe<String>;
+  classifyNum_not_ends_with?: Maybe<String>;
   main?: Maybe<Boolean>;
   main_not?: Maybe<Boolean>;
   announcement?: Maybe<Boolean>;
@@ -2793,7 +2799,7 @@ export interface PostCreateInput {
   id?: Maybe<ID_Input>;
   files?: Maybe<FileCreateManyWithoutPostInput>;
   author?: Maybe<UserCreateOneWithoutPostsInput>;
-  classifyNum: Int;
+  classifyNum: String;
   main: Boolean;
   announcement: Boolean;
   title: String;
@@ -2980,7 +2986,7 @@ export interface CommentUpsertWithWhereUniqueWithoutPostInput {
 export interface PostCreateWithoutFilesInput {
   id?: Maybe<ID_Input>;
   author?: Maybe<UserCreateOneWithoutPostsInput>;
-  classifyNum: Int;
+  classifyNum: String;
   main: Boolean;
   announcement: Boolean;
   title: String;
@@ -3454,7 +3460,7 @@ export interface PostCreateWithoutCommentsInput {
   id?: Maybe<ID_Input>;
   files?: Maybe<FileCreateManyWithoutPostInput>;
   author?: Maybe<UserCreateOneWithoutPostsInput>;
-  classifyNum: Int;
+  classifyNum: String;
   main: Boolean;
   announcement: Boolean;
   title: String;
@@ -3530,14 +3536,20 @@ export interface PostScalarWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  classifyNum?: Maybe<Int>;
-  classifyNum_not?: Maybe<Int>;
-  classifyNum_in?: Maybe<Int[] | Int>;
-  classifyNum_not_in?: Maybe<Int[] | Int>;
-  classifyNum_lt?: Maybe<Int>;
-  classifyNum_lte?: Maybe<Int>;
-  classifyNum_gt?: Maybe<Int>;
-  classifyNum_gte?: Maybe<Int>;
+  classifyNum?: Maybe<String>;
+  classifyNum_not?: Maybe<String>;
+  classifyNum_in?: Maybe<String[] | String>;
+  classifyNum_not_in?: Maybe<String[] | String>;
+  classifyNum_lt?: Maybe<String>;
+  classifyNum_lte?: Maybe<String>;
+  classifyNum_gt?: Maybe<String>;
+  classifyNum_gte?: Maybe<String>;
+  classifyNum_contains?: Maybe<String>;
+  classifyNum_not_contains?: Maybe<String>;
+  classifyNum_starts_with?: Maybe<String>;
+  classifyNum_not_starts_with?: Maybe<String>;
+  classifyNum_ends_with?: Maybe<String>;
+  classifyNum_not_ends_with?: Maybe<String>;
   main?: Maybe<Boolean>;
   main_not?: Maybe<Boolean>;
   announcement?: Maybe<Boolean>;
@@ -3632,7 +3644,7 @@ export interface LikeOnCommentSubscriptionWhereInput {
 }
 
 export interface PostUpdateManyDataInput {
-  classifyNum?: Maybe<Int>;
+  classifyNum?: Maybe<String>;
   main?: Maybe<Boolean>;
   announcement?: Maybe<Boolean>;
   title?: Maybe<String>;
@@ -3837,7 +3849,7 @@ export interface PostCreateWithoutLikesInput {
   id?: Maybe<ID_Input>;
   files?: Maybe<FileCreateManyWithoutPostInput>;
   author?: Maybe<UserCreateOneWithoutPostsInput>;
-  classifyNum: Int;
+  classifyNum: String;
   main: Boolean;
   announcement: Boolean;
   title: String;
@@ -3891,7 +3903,7 @@ export interface FileUpsertWithWhereUniqueWithoutBookInput {
 export interface PostCreateWithoutAuthorInput {
   id?: Maybe<ID_Input>;
   files?: Maybe<FileCreateManyWithoutPostInput>;
-  classifyNum: Int;
+  classifyNum: String;
   main: Boolean;
   announcement: Boolean;
   title: String;
@@ -3912,7 +3924,7 @@ export interface PostCreateWithoutBulletinListInput {
   id?: Maybe<ID_Input>;
   files?: Maybe<FileCreateManyWithoutPostInput>;
   author?: Maybe<UserCreateOneWithoutPostsInput>;
-  classifyNum: Int;
+  classifyNum: String;
   main: Boolean;
   announcement: Boolean;
   title: String;
@@ -4064,7 +4076,7 @@ export interface AggregateBookSubscription
 
 export interface Post {
   id: ID_Output;
-  classifyNum: Int;
+  classifyNum: String;
   main: Boolean;
   announcement: Boolean;
   title: String;
@@ -4085,7 +4097,7 @@ export interface PostPromise extends Promise<Post>, Fragmentable {
     last?: Int;
   }) => T;
   author: <T = UserPromise>() => T;
-  classifyNum: () => Promise<Int>;
+  classifyNum: () => Promise<String>;
   main: () => Promise<Boolean>;
   announcement: () => Promise<Boolean>;
   title: () => Promise<String>;
@@ -4136,7 +4148,7 @@ export interface PostSubscription
     last?: Int;
   }) => T;
   author: <T = UserSubscription>() => T;
-  classifyNum: () => Promise<AsyncIterator<Int>>;
+  classifyNum: () => Promise<AsyncIterator<String>>;
   main: () => Promise<AsyncIterator<Boolean>>;
   announcement: () => Promise<AsyncIterator<Boolean>>;
   title: () => Promise<AsyncIterator<String>>;
@@ -4187,7 +4199,7 @@ export interface PostNullablePromise
     last?: Int;
   }) => T;
   author: <T = UserPromise>() => T;
-  classifyNum: () => Promise<Int>;
+  classifyNum: () => Promise<String>;
   main: () => Promise<Boolean>;
   announcement: () => Promise<Boolean>;
   title: () => Promise<String>;
@@ -6131,7 +6143,7 @@ export interface UserSubscriptionPayloadSubscription
 
 export interface PostPreviousValues {
   id: ID_Output;
-  classifyNum: Int;
+  classifyNum: String;
   main: Boolean;
   announcement: Boolean;
   title: String;
@@ -6144,7 +6156,7 @@ export interface PostPreviousValuesPromise
   extends Promise<PostPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  classifyNum: () => Promise<Int>;
+  classifyNum: () => Promise<String>;
   main: () => Promise<Boolean>;
   announcement: () => Promise<Boolean>;
   title: () => Promise<String>;
@@ -6157,7 +6169,7 @@ export interface PostPreviousValuesSubscription
   extends Promise<AsyncIterator<PostPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  classifyNum: () => Promise<AsyncIterator<Int>>;
+  classifyNum: () => Promise<AsyncIterator<String>>;
   main: () => Promise<AsyncIterator<Boolean>>;
   announcement: () => Promise<AsyncIterator<Boolean>>;
   title: () => Promise<AsyncIterator<String>>;

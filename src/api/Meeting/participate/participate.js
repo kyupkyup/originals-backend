@@ -7,13 +7,35 @@ export default {
       const { user } = request;
       const { meetingId } = args;
 
-      const participant = await prisma.createParticipant({
-        user: { connect: { id: user.id } },
-        meeting: { connect: { id: meetingId } }
-      });
-      if (participant) {
-        return true;
-      } else {
+      const filterOptions = {
+        AND: [
+          {
+            user: {
+              id: user.id
+            }
+          },
+          {
+            meeting: {
+              id: meetingId
+            }
+          }
+        ]
+      };
+      try {
+        const existingParticipate = await prisma.$exists.participant(
+          filterOptions
+        );
+        if (existingParticipate) {
+          await prisma.deleteManyParticipants(filterOptions);
+          return true;
+        } else {
+          await prisma.createParticipant({
+            user: { connect: { id: user.id } },
+            meeting: { connect: { id: meetingId } }
+          });
+          return true;
+        }
+      } catch {
         return false;
       }
     }

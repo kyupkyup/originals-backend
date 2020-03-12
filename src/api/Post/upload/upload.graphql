@@ -1,7 +1,7 @@
 type Mutation {
   upload(
     caption: String!
-    classifyNum: Int!
+    classifyNum: String!
     main: Boolean!
     announcement: Boolean!
     title: String!

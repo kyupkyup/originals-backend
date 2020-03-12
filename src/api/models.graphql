@@ -28,7 +28,7 @@ type Post {
   id: ID!
   files: [File!]!
   author: User
-  classifyNum: Int!
+  classifyNum: String!
   main: Boolean!
   announcement: Boolean!
   title: String!

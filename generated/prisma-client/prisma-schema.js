@@ -2133,7 +2133,7 @@ type Post {
   id: ID!
   files(where: FileWhereInput, orderBy: FileOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [File!]
   author: User
-  classifyNum: Int!
+  classifyNum: String!
   main: Boolean!
   announcement: Boolean!
   title: String!
@@ -2156,7 +2156,7 @@ input PostCreateInput {
   id: ID
   files: FileCreateManyWithoutPostInput
   author: UserCreateOneWithoutPostsInput
-  classifyNum: Int!
+  classifyNum: String!
   main: Boolean!
   announcement: Boolean!
   title: String!
@@ -2200,7 +2200,7 @@ input PostCreateOneWithoutViewsInput {
 input PostCreateWithoutAuthorInput {
   id: ID
   files: FileCreateManyWithoutPostInput
-  classifyNum: Int!
+  classifyNum: String!
   main: Boolean!
   announcement: Boolean!
   title: String!
@@ -2215,7 +2215,7 @@ input PostCreateWithoutBulletinListInput {
   id: ID
   files: FileCreateManyWithoutPostInput
   author: UserCreateOneWithoutPostsInput
-  classifyNum: Int!
+  classifyNum: String!
   main: Boolean!
   announcement: Boolean!
   title: String!
@@ -2229,7 +2229,7 @@ input PostCreateWithoutCommentsInput {
   id: ID
   files: FileCreateManyWithoutPostInput
   author: UserCreateOneWithoutPostsInput
-  classifyNum: Int!
+  classifyNum: String!
   main: Boolean!
   announcement: Boolean!
   title: String!
@@ -2242,7 +2242,7 @@ input PostCreateWithoutCommentsInput {
 input PostCreateWithoutFilesInput {
   id: ID
   author: UserCreateOneWithoutPostsInput
-  classifyNum: Int!
+  classifyNum: String!
   main: Boolean!
   announcement: Boolean!
   title: String!
@@ -2257,7 +2257,7 @@ input PostCreateWithoutLikesInput {
   id: ID
   files: FileCreateManyWithoutPostInput
   author: UserCreateOneWithoutPostsInput
-  classifyNum: Int!
+  classifyNum: String!
   main: Boolean!
   announcement: Boolean!
   title: String!
@@ -2271,7 +2271,7 @@ input PostCreateWithoutViewsInput {
   id: ID
   files: FileCreateManyWithoutPostInput
   author: UserCreateOneWithoutPostsInput
-  classifyNum: Int!
+  classifyNum: String!
   main: Boolean!
   announcement: Boolean!
   title: String!
@@ -2307,7 +2307,7 @@ enum PostOrderByInput {
 
 type PostPreviousValues {
   id: ID!
-  classifyNum: Int!
+  classifyNum: String!
   main: Boolean!
   announcement: Boolean!
   title: String!
@@ -2331,14 +2331,20 @@ input PostScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  classifyNum: Int
-  classifyNum_not: Int
-  classifyNum_in: [Int!]
-  classifyNum_not_in: [Int!]
-  classifyNum_lt: Int
-  classifyNum_lte: Int
-  classifyNum_gt: Int
-  classifyNum_gte: Int
+  classifyNum: String
+  classifyNum_not: String
+  classifyNum_in: [String!]
+  classifyNum_not_in: [String!]
+  classifyNum_lt: String
+  classifyNum_lte: String
+  classifyNum_gt: String
+  classifyNum_gte: String
+  classifyNum_contains: String
+  classifyNum_not_contains: String
+  classifyNum_starts_with: String
+  classifyNum_not_starts_with: String
+  classifyNum_ends_with: String
+  classifyNum_not_ends_with: String
   main: Boolean
   main_not: Boolean
   announcement: Boolean
@@ -2413,7 +2419,7 @@ input PostSubscriptionWhereInput {
 input PostUpdateInput {
   files: FileUpdateManyWithoutPostInput
   author: UserUpdateOneWithoutPostsInput
-  classifyNum: Int
+  classifyNum: String
   main: Boolean
   announcement: Boolean
   title: String
@@ -2425,7 +2431,7 @@ input PostUpdateInput {
 }
 
 input PostUpdateManyDataInput {
-  classifyNum: Int
+  classifyNum: String
   main: Boolean
   announcement: Boolean
   title: String
@@ -2433,7 +2439,7 @@ input PostUpdateManyDataInput {
 }
 
 input PostUpdateManyMutationInput {
-  classifyNum: Int
+  classifyNum: String
   main: Boolean
   announcement: Boolean
   title: String
@@ -2501,7 +2507,7 @@ input PostUpdateOneWithoutFilesInput {
 
 input PostUpdateWithoutAuthorDataInput {
   files: FileUpdateManyWithoutPostInput
-  classifyNum: Int
+  classifyNum: String
   main: Boolean
   announcement: Boolean
   title: String
@@ -2515,7 +2521,7 @@ input PostUpdateWithoutAuthorDataInput {
 input PostUpdateWithoutBulletinListDataInput {
   files: FileUpdateManyWithoutPostInput
   author: UserUpdateOneWithoutPostsInput
-  classifyNum: Int
+  classifyNum: String
   main: Boolean
   announcement: Boolean
   title: String
@@ -2528,7 +2534,7 @@ input PostUpdateWithoutBulletinListDataInput {
 input PostUpdateWithoutCommentsDataInput {
   files: FileUpdateManyWithoutPostInput
   author: UserUpdateOneWithoutPostsInput
-  classifyNum: Int
+  classifyNum: String
   main: Boolean
   announcement: Boolean
   title: String
@@ -2540,7 +2546,7 @@ input PostUpdateWithoutCommentsDataInput {
 
 input PostUpdateWithoutFilesDataInput {
   author: UserUpdateOneWithoutPostsInput
-  classifyNum: Int
+  classifyNum: String
   main: Boolean
   announcement: Boolean
   title: String
@@ -2554,7 +2560,7 @@ input PostUpdateWithoutFilesDataInput {
 input PostUpdateWithoutLikesDataInput {
   files: FileUpdateManyWithoutPostInput
   author: UserUpdateOneWithoutPostsInput
-  classifyNum: Int
+  classifyNum: String
   main: Boolean
   announcement: Boolean
   title: String
@@ -2567,7 +2573,7 @@ input PostUpdateWithoutLikesDataInput {
 input PostUpdateWithoutViewsDataInput {
   files: FileUpdateManyWithoutPostInput
   author: UserUpdateOneWithoutPostsInput
-  classifyNum: Int
+  classifyNum: String
   main: Boolean
   announcement: Boolean
   title: String
@@ -2638,14 +2644,20 @@ input PostWhereInput {
   files_some: FileWhereInput
   files_none: FileWhereInput
   author: UserWhereInput
-  classifyNum: Int
-  classifyNum_not: Int
-  classifyNum_in: [Int!]
-  classifyNum_not_in: [Int!]
-  classifyNum_lt: Int
-  classifyNum_lte: Int
-  classifyNum_gt: Int
-  classifyNum_gte: Int
+  classifyNum: String
+  classifyNum_not: String
+  classifyNum_in: [String!]
+  classifyNum_not_in: [String!]
+  classifyNum_lt: String
+  classifyNum_lte: String
+  classifyNum_gt: String
+  classifyNum_gte: String
+  classifyNum_contains: String
+  classifyNum_not_contains: String
+  classifyNum_starts_with: String
+  classifyNum_not_starts_with: String
+  classifyNum_ends_with: String
+  classifyNum_not_ends_with: String
   main: Boolean
   main_not: Boolean
   announcement: Boolean

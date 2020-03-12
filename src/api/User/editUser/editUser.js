@@ -6,7 +6,6 @@ export default {
       isAuthenticated(request);
       const {
         id,
-        avatar,
         userName,
         birthday,
         phoneNum,
@@ -23,7 +22,6 @@ export default {
               id: user.id
             },
             data: {
-              avatar,
               userName,
               birthday,
               phoneNum,

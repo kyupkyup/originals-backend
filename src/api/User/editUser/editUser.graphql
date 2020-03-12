@@ -6,7 +6,6 @@ enum ACTIONS {
 type Mutation {
   editUser(
     id: String!
-    avatar: String
     userName: String
     birthday: String
     phoneNum: String

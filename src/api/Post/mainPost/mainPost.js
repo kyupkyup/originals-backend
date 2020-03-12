@@ -11,7 +11,6 @@ export default {
           main: true
         }
       });
-      console.log(post[0]);
       return post[0];
     }
   }

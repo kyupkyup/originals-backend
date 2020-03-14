@@ -79,7 +79,7 @@ type Meeting{
     deadline: String!
     meetingHeadCounts: Int!
     coords: String
-    participants: [Participant!]! @ralation(name: "ParticipantsOfMeeting" onDelete:CASCADE)
+    participants: [Participant!]! @relation(name: "ParticipantsOfMeeting" onDelete:CASCADE)
     createdAt: DateTime! @createdAt
 }
 
@@ -87,7 +87,7 @@ type Meeting{
 type Participant{
     id: ID! @id
     user: User @relation(name:"ParticipantsOfUser")
-    meeting: Meeting! @realation(name: "ParticipantsOfMeeting")
+    meeting: Meeting! @relation(name: "ParticipantsOfMeeting")
     createdAt: DateTime! @createdAt
 }
 

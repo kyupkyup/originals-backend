@@ -19,7 +19,7 @@ export default {
         main,
         announcement,
         title,
-        bulletinList: { connect: { id: "ck7bzh4vsa3yh0950i06zxm0m" } }
+        bulletinList: { connect: { id: "ck70f19wn001r07467vn47v6s" } }
       });
       console.log(main);
       //   files.forEach(

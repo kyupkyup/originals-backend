@@ -1,3 +1,9 @@
+/* User 객체 정의
+ * 특히 객체 내 연산이 필요한 count 변수 같은 경우에는
+ * 이 서버 코드 내에서 연산을 함.
+ * refactoring : '20. 7. 12.
+ *
+ */
 import { prisma } from "../../../generated/prisma-client";
 
 export default {
@@ -20,8 +26,8 @@ export default {
       prisma
         .postsConnection({
           where: {
-            author: { id }
-          }
+            author: { id },
+          },
         })
         .aggregate()
         .count(),
@@ -29,8 +35,8 @@ export default {
       prisma
         .commentsConnection({
           where: {
-            user: { id }
-          }
+            user: { id },
+          },
         })
         .aggregate()
         .count(),
@@ -38,8 +44,8 @@ export default {
       prisma
         .likesConnection({
           where: {
-            user: { id }
-          }
+            user: { id },
+          },
         })
         .aggregate()
         .count(),
@@ -47,8 +53,8 @@ export default {
       prisma
         .reservationsConnection({
           where: {
-            user: { id }
-          }
+            user: { id },
+          },
         })
         .aggregate()
         .count(),
@@ -56,8 +62,8 @@ export default {
       prisma
         .participantsConnection({
           where: {
-            user: { id }
-          }
+            user: { id },
+          },
         })
         .aggregate()
         .count(),
@@ -65,6 +71,6 @@ export default {
       const { user } = request;
       const { id: parentId } = parent;
       return user.id === parentId;
-    }
-  }
+    },
+  },
 };

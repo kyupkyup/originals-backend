@@ -2,7 +2,7 @@ enum ACTIONS {
   EDIT
   DELETE
 }
-
+# 계정 수정과 삭제를 ACTION 값으로 결정
 type Mutation {
   editUser(
     id: String!

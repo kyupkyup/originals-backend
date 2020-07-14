@@ -1,3 +1,8 @@
+/* Post 객체 정의
+ * refactoring : '20. 7. 12.
+ *
+ */
+
 import { prisma } from "../../../generated/prisma-client";
 
 export default {
@@ -20,15 +25,15 @@ export default {
         AND: [
           {
             user: {
-              id: user.id
-            }
+              id: user.id,
+            },
           },
           {
             post: {
-              id
-            }
-          }
-        ]
+              id,
+            },
+          },
+        ],
       });
     },
     isViewed: (parent, _, { request }) => {
@@ -38,37 +43,37 @@ export default {
         AND: [
           {
             user: {
-              id: user.id
-            }
+              id: user.id,
+            },
           },
           {
             post: {
-              id
-            }
-          }
-        ]
+              id,
+            },
+          },
+        ],
       });
     },
-    likesCount: parent =>
+    likesCount: (parent) =>
       prisma
         .likesConnection({
-          where: { post: { id: parent.id } }
+          where: { post: { id: parent.id } },
         })
         .aggregate()
         .count(),
-    commentsCount: parent =>
+    commentsCount: (parent) =>
       prisma
         .commentsConnection({
-          where: { post: { id: parent.id } }
+          where: { post: { id: parent.id } },
         })
         .aggregate()
         .count(),
-    viewsCount: parent =>
+    viewsCount: (parent) =>
       prisma
         .viewsConnection({
-          where: { post: { id: parent.id } }
+          where: { post: { id: parent.id } },
         })
         .aggregate()
-        .count()
-  }
+        .count(),
+  },
 };

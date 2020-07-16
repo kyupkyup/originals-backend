@@ -8,13 +8,13 @@ import { prisma } from "../generated/prisma-client";
 
 const jwtOptions = {
   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: process.env.JWT_SECRET
+  secretOrKey: process.env.JWT_SECRET,
 };
 
 const verifyUser = async (payload, done) => {
   try {
     const user = await prisma.user({
-      id: payload.id
+      id: payload.id,
     });
     if (user !== null) {
       return done(null, user);
@@ -36,4 +36,3 @@ export const authenticateJwt = (req, res, next) => {
 };
 passport.use(new Strategy(jwtOptions, verifyUser));
 passport.initialize();
-// {Authorization: 'Bearer TOKEN'}

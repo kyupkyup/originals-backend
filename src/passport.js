@@ -1,3 +1,7 @@
+/*
+refactoring : 2020. 7. 17
+**/
+
 import dotenv from "dotenv";
 import path from "path";
 import "./env";
